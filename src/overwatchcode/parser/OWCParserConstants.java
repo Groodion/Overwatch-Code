@@ -19,31 +19,33 @@ public interface OWCParserConstants {
   /** RegularExpression Id. */
   int FALSE = 7;
   /** RegularExpression Id. */
-  int SCOPE_ALL = 8;
+  int STRING_LITERAL = 8;
   /** RegularExpression Id. */
-  int IF = 9;
+  int SCOPE_ALL = 9;
   /** RegularExpression Id. */
-  int FOR = 10;
+  int IF = 10;
   /** RegularExpression Id. */
-  int WHILE = 11;
+  int FOR = 11;
   /** RegularExpression Id. */
-  int FOREACH = 12;
+  int WHILE = 12;
   /** RegularExpression Id. */
-  int IDENTIFIER = 13;
+  int FOREACH = 13;
   /** RegularExpression Id. */
-  int GT = 14;
+  int IDENTIFIER = 14;
   /** RegularExpression Id. */
-  int GTEQ = 15;
+  int GT = 15;
   /** RegularExpression Id. */
-  int ST = 16;
+  int GTEQ = 16;
   /** RegularExpression Id. */
-  int STEQ = 17;
+  int ST = 17;
   /** RegularExpression Id. */
-  int EQ = 18;
+  int STEQ = 18;
   /** RegularExpression Id. */
-  int NEQ = 19;
+  int EQ = 19;
   /** RegularExpression Id. */
-  int NOT_OP = 20;
+  int NEQ = 20;
+  /** RegularExpression Id. */
+  int NOT_OP = 21;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -58,6 +60,7 @@ public interface OWCParserConstants {
     "<BOOLEAN_LITERAL>",
     "\"true\"",
     "\"false\"",
+    "<STRING_LITERAL>",
     "\"?\"",
     "\"if\"",
     "\"for\"",

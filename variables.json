@@ -1,0 +1,19 @@
+[
+	{
+		"scope": "global",
+		"nameConnections": {
+			"A": ["i"]
+			"D": ["var"]
+			"Z": ["testVar1"]
+		}
+	},
+	{
+		"scope": "player",
+		"nameConnections": {
+			"B": ["i"]
+			"X": ["var"]
+			"A": ["testVar1"]
+		}
+	}
+
+]

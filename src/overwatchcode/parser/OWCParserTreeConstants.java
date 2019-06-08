@@ -35,6 +35,7 @@ public interface OWCParserTreeConstants
   public int JJTVECTOR = 29;
   public int JJTNUMBER = 30;
   public int JJTBOOLEAN = 31;
+  public int JJTSTRING = 32;
 
 
   public String[] jjtNodeName = {
@@ -70,6 +71,7 @@ public interface OWCParserTreeConstants
     "Vector",
     "Number",
     "Boolean",
+    "String",
   };
 }
-/* JavaCC - OriginalChecksum=40f8aa06c3d056f14f34934f50d3f4d2 (do not edit this line) */
+/* JavaCC - OriginalChecksum=0cc2d07db5f843083473ba4e12b55003 (do not edit this line) */

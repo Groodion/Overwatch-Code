@@ -36,5 +36,6 @@ public interface OWCParserVisitor
   public overwatchcode.workshop.Block visit(ASTVector node, overwatchcode.workshop.Block data);
   public overwatchcode.workshop.Block visit(ASTNumber node, overwatchcode.workshop.Block data);
   public overwatchcode.workshop.Block visit(ASTBoolean node, overwatchcode.workshop.Block data);
+  public overwatchcode.workshop.Block visit(ASTString node, overwatchcode.workshop.Block data);
 }
-/* JavaCC - OriginalChecksum=27a8307d4879722aa8ab8988bddae4ba (do not edit this line) */
+/* JavaCC - OriginalChecksum=ce573423ad580e8763d259ba02424e30 (do not edit this line) */

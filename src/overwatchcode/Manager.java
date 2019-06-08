@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -71,6 +72,9 @@ public class Manager {
 	public Collection<RuleEvent> getEvents() {
 		return events.values();
 	}
+	public Set<String> getAvailableLanguages() {
+		return keywordContainers.keySet();
+	}
 	public KeywordContainer getKeywordContainer(String language) {
 		return keywordContainers.get(language);
 	}
@@ -89,7 +93,7 @@ public class Manager {
 				String t = function.isCaseSensitive() ? text : text.toLowerCase();
 				
 				if(t.equals(n)) {
-					if(function.getArguments() != size) {
+					if(function.getArguments().length != size) {
 						errors.add("Not enough/Too Many Arguments in Function '" + name + "' (" + size + " != " + function.getArguments() + ")");
 					}
 					
@@ -157,7 +161,7 @@ public class Manager {
 							break;
 						}
 					}
-					if(!eventOk || !functionsOk) errors.add("SystemVariable '" + sVariable + "' is used outside of allowed events or functions");
+					if(!eventOk || !functionsOk) errors.add("SystemVariable '" + sVariable.getName() + "' is used outside of allowed events or functions");
 					
 					return sVariable.getName();
 				}
@@ -189,9 +193,9 @@ public class Manager {
 			sB.append(error);
 			sB.append('\n');
 		}
-		for(String error: errors) {
+		for(String warning: warnings) {
 			sB.append("WARNING: ");
-			sB.append(error);
+			sB.append(warning);
 			sB.append('\n');
 		}
 		
@@ -240,7 +244,12 @@ public class Manager {
 		}
 		for(String function: functions.keySet()) {
 			JSONObject obj = functions.getJSONObject(function);
-			int arguments = obj.has("arguments") ? obj.getInt("arguments") : 0;
+			String[] arguments = new String[0];
+			if(obj.has("arguments")) {
+				JSONArray argumentsArray = obj.getJSONArray("arguments");
+				arguments = new String[argumentsArray.length()];
+				for(int i = 0; i < arguments.length; i++) arguments[i] = argumentsArray.getString(i);
+			}
 			boolean caseSensitive = obj.has("caseSensitive") ? obj.getBoolean("caseSensitive") : true;
 			boolean action = obj.has("action") ? obj.getBoolean("action") : false;
 			String[] text = new String[0];

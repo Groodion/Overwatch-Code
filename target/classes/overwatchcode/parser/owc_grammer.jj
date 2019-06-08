@@ -29,6 +29,7 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
 SKIP :{  < " " | "\t" | "\r" | "\n" | "\r\n" >| < "//" (~[ "\n", "\r" ])* ("\n" | "\r" | "\r\n") >| < "/*" (~[ "*" ])* "*" (~[ "/" ] (~[ "*" ])* "*")* "/" >}TOKEN : /* LITERALS */{  < NUMBER_LITERAL : [ "0"-"9" ] ([ "0"-"9" ])* ("." ([ "0"-"9" ])*)? >| < BOOLEAN_LITERAL: < TRUE > | < FALSE >>
 | < #TRUE: "true">
 | < #FALSE: "false">
+| < STRING_LITERAL:  "\"" (~["\""])* "\"">
 }
 TOKEN: /* KEYWORDS */
 {
@@ -299,8 +300,8 @@ void Statement():
 {/*@bgen(jjtree) Statement */
   try {
 /*@egen*/
-  LOOKAHEAD(2) "$" FunctionCall()
-| LOOKAHEAD(2) Assignment()/*@bgen(jjtree)*/
+  LOOKAHEAD(2) FunctionCall()
+| LOOKAHEAD(2) "$" Assignment()/*@bgen(jjtree)*/
   } catch (Throwable jjte000) {
     if (jjtc000) {
       jjtree.clearNodeScope(jjtn000);
@@ -907,6 +908,7 @@ void UnaryExpression() :
   Number()
 | Boolean()
 | Vector()
+| String()
 | "!" UnaryExpression()
 | "(" Expression() ")"
 | VectorComponent()
@@ -1039,6 +1041,27 @@ void Boolean():
   try {
 /*@egen*/
   < BOOLEAN_LITERAL >/*@bgen(jjtree)*/
+  } finally {
+    if (jjtc000) {
+      jjtree.closeNodeScope(jjtn000, true);
+      jjtreeCloseNodeScope(jjtn000);
+      jjtn000.jjtSetLastToken(getToken(0));
+    }
+  }
+/*@egen*/
+}
+void String():
+{/*@bgen(jjtree) String */
+  ASTString jjtn000 = new ASTString(this, JJTSTRING);
+  boolean jjtc000 = true;
+  jjtree.openNodeScope(jjtn000);
+  jjtreeOpenNodeScope(jjtn000);
+  jjtn000.jjtSetFirstToken(getToken(1));
+/*@egen*/}
+{/*@bgen(jjtree) String */
+  try {
+/*@egen*/
+  < STRING_LITERAL>/*@bgen(jjtree)*/
   } finally {
     if (jjtc000) {
       jjtree.closeNodeScope(jjtn000, true);

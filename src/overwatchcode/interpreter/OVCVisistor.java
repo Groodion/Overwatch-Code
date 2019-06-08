@@ -29,6 +29,7 @@ import overwatchcode.parser.ASTRuleName;
 import overwatchcode.parser.ASTRuleScope;
 import overwatchcode.parser.ASTStart;
 import overwatchcode.parser.ASTStatement;
+import overwatchcode.parser.ASTString;
 import overwatchcode.parser.ASTTeamScope;
 import overwatchcode.parser.ASTUnaryExpression;
 import overwatchcode.parser.ASTVarArrayItem;
@@ -604,9 +605,8 @@ public class OVCVisistor implements overwatchcode.parser.OWCParserVisitor {
 		return comp;
 	}
 
-
-
-
-
-
+	@Override
+	public Block visit(ASTString node, Block data) {
+		return new Terminal(node.jjtGetFirstToken().image);
+	}
 }

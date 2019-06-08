@@ -3,13 +3,13 @@ package overwatchcode.workshop;
 public class WorkshopFunction {
 	
 	private String name;
-	private int arguments;
+	private String[] arguments;
 	private boolean caseSensitive;
 	private String[] text;
 	private boolean action;
 	
 	
-	public WorkshopFunction(String name, int arguments, boolean caseSensitive, String[] text, boolean action) {
+	public WorkshopFunction(String name, String[] arguments, boolean caseSensitive, String[] text, boolean action) {
 		this.name = name;
 		this.arguments = arguments;
 		this.caseSensitive = caseSensitive;
@@ -20,7 +20,7 @@ public class WorkshopFunction {
 	public String getName() {
 		return name;
 	}
-	public int getArguments() {
+	public String[] getArguments() {
 		return arguments;
 	}
 	public boolean isCaseSensitive() {

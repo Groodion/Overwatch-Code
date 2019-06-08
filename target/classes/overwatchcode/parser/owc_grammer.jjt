@@ -25,6 +25,7 @@ public class OWCParser extends OWCParserBase{}PARSER_END(OWCParser)
 SKIP :{  < " " | "\t" | "\r" | "\n" | "\r\n" >| < "//" (~[ "\n", "\r" ])* ("\n" | "\r" | "\r\n") >| < "/*" (~[ "*" ])* "*" (~[ "/" ] (~[ "*" ])* "*")* "/" >}TOKEN : /* LITERALS */{  < NUMBER_LITERAL : [ "0"-"9" ] ([ "0"-"9" ])* ("." ([ "0"-"9" ])*)? >| < BOOLEAN_LITERAL: < TRUE > | < FALSE >>
 | < #TRUE: "true">
 | < #FALSE: "false">
+| < STRING_LITERAL:  "\"" (~["\""])* "\"">
 }
 TOKEN: /* KEYWORDS */
 {
@@ -96,8 +97,8 @@ void RuleCondition():
 void Statement():
 {}
 {
-  LOOKAHEAD(2) "$" FunctionCall()
-| LOOKAHEAD(2) Assignment()
+  LOOKAHEAD(2) FunctionCall()
+| LOOKAHEAD(2) "$" Assignment()
 }
 void FunctionCall():
 {}
@@ -204,6 +205,7 @@ void UnaryExpression() :
   Number()
 | Boolean()
 | Vector()
+| String()
 | "!" UnaryExpression()
 | "(" Expression() ")"
 | VectorComponent()
@@ -230,4 +232,9 @@ void Boolean():
 {}
 {
   < BOOLEAN_LITERAL >
+}
+void String():
+{}
+{
+  < STRING_LITERAL>
 }

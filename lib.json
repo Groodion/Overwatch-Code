@@ -55,9 +55,235 @@
 			"ruleEvents": ["Ongoing - Each Player", "Player earned elimination", "Player dealt final blow", "Player dealt damage", "Player took damage", "Player Died"],
 			"text": ["EventPlayer"],
 			"caseSensitive": false
-		}
+		},
+		"Primary Fire": {
+			"functions": ["Allow Button"],
+			"text": ["PrimaryFire"],
+			"caseSensitive": false			
+		},
+
+		"Secondary Fire": {
+			"functions": ["Allow Button"],
+			"text": ["SecondaryFire"],
+			"caseSensitive": false			
+		},
+		"Ability 1": {
+			"functions": ["Allow Button"],
+			"text": ["Ability1"],
+			"caseSensitive": false			
+		},
+		"Ability 2": {
+			"functions": ["Allow Button"],
+			"text": ["Ability2"],
+			"caseSensitive": false			
+		},
+		"Ultimate": {
+			"functions": ["Allow Button"],
+			"text": ["Ultimate"],
+			"caseSensitive": false			
+		},
+		"Interact": {
+			"functions": ["Allow Button"],
+			"text": ["Interact"],
+			"caseSensitive": false			
+		},
+		"Jump": {
+			"functions": ["Jump"],
+			"text": ["PrimaryFire"],
+			"caseSensitive": false			
+		},
+		"Crouch": {
+			"functions": ["Crouch"],
+			"text": ["PrimaryFire"],
+			"caseSensitive": false			
+		},
+		"To World": {
+			"functions": ["Apply Impulse"],
+			"text": ["ToWorld"],
+			"caseSensitive": false			
+		},
+		"To Player": {
+			"functions": ["Apply Impulse"],
+			"text": ["ToPlayer"],
+			"caseSensitive": false			
+		},
+		"Cancel Contrary Motion": {
+			"functions": ["Apply Impulse"],
+			"text": ["CancelContraryMotion", "Cancel"],
+			"caseSensitive": false			
+		},
+		"Incorporate Contrary Motion": {
+			"functions": ["Apply Impulse"],
+			"text": ["IncorporateContraryMotion", "Incorporate"],
+			"caseSensitive": false			
+		},
+		"All Teams": {
+			"text": ["All", "AllTeams"],
+			"caseSensitive": false
+		},
+		"Team 1": {
+			"text": ["Team1"],
+			"caseSensitive": false
+		},
+		"Team 2": {
+			"text": ["Team2"],
+			"caseSensitive": false
+		},
+		"Null": {
+			"functions": ["String"],
+			"text": ["null"],
+			"caseSensitive": false
+		},
+		"Destination And Rate": {
+			"functions": ["Chase Global Variable At Rate", "Chase Global Variable Over Time", "Chase Player Variable At Rate", "Chase Player Variable Over Time"],
+			"text": ["DestinationAndRate"],
+			"caseSensitive": false
+		},
+		"None": {
+			"functions": ["Chase Global Variable At Rate", "Chase Global Variable Over Time", "Chase Player Variable At Rate", "Chase Player Variable Over Time"],
+			"text": ["None"],
+			"caseSensitive": false
+		},
+		"Hacked": {
+			"functions": ["Clear Status"],
+			"text": ["Hacked"],
+			"caseSensitive": false
+		},
+		"Burning": {
+			"functions": ["Clear Status"],
+			"text": ["Burning"],
+			"caseSensitive": false
+		},
+		"Knocked Down": {
+			"functions": ["Clear Status"],
+			"text": ["KnockedDown"],
+			"caseSensitive": false
+		},
+		"Asleep": {
+			"functions": ["Clear Status"],
+			"text": ["Asleep"],
+			"caseSensitive": false
+		},
+		"Frozen": {
+			"functions": ["Clear Status"],
+			"text": ["Frozen"],
+			"caseSensitive": false
+		},
+		"Unkillable": {
+			"functions": ["Clear Status"],
+			"text": ["Unkillable"],
+			"caseSensitive": false
+		},
+		"Invincible": {
+			"functions": ["Clear Status"],
+			"text": ["Invincible"],
+			"caseSensitive": false
+		},
+		"Phased Out": {
+			"functions": ["Clear Status"],
+			"text": ["PhasedOut"],
+			"caseSensitive": false
+		},
+		"Rooted": {
+			"functions": ["Clear Status"],
+			"text": ["Rooted"],
+			"caseSensitive": false
+		},
+		"Stunned": {
+			"functions": ["Clear Status"],
+			"text": ["Stunned"],
+			"caseSensitive": false
+		},
+
 	},
 	"functions": {
+		"Set Global Variable": {
+			"arguments": ["Variable", "Value"],
+			"caseSensitive": false,
+			"action": true,
+			"text": ["setGlobalVariable"]
+		},
+		"Abort": {
+			"caseSensitive": false,
+			"action": true,
+			"text": ["abort"]
+		},
+		"Abort If": {
+			"arguments": ["Condition"],
+			"caseSensitive": false,
+			"action": true,
+			"text": ["abortIf"]
+		},
+		"AbortIfConditionIsFalse": {
+			"caseSensitive": false,
+			"action": true,
+			"text": ["abortIfConditionIsFalse"]
+		},
+		"AbortIfConditionIsTrue": {
+			"caseSensitive": false,
+			"action": true,
+			"text": ["abortIfConditionIsFalse"]
+		},
+		"Allow Button": {
+			"arguments": ["Player", "Button"],
+			"action": true,
+			"caseSensitive": false,
+			"text": ["allowButton"]
+		},
+		"Apply Impulse": {
+			"arguments": ["Player", "Direction", "Speed", "Relative", "Motion"],
+			"action": true,
+			"caseSensitive": false,
+			"text": ["applyImpulse"]
+		},
+		"Big Message": {
+			"arguments": ["VisibleTo", "Header"],
+			"action": true,
+			"caseSensitive": false,
+			"text": ["bigMessage"]
+		},
+		"All Players": {
+			"arguments": ["Team"],
+			"action": false,
+			"caseSensitive": false,
+			"text": ["allPlayers"]
+		},
+		"String": {
+			"arguments": ["String", "{0}", "{1}", "{2}"],
+			"action": false,
+			"caseSensitive": false,
+			"text": ["string"]
+		},
+		"Chase Global Variable At Rate": {
+			"arguments": ["Variable", "Destination", "Rate", "Reevalulation"],
+			"action": true,
+			"caseSensitive": false,
+			"text": ["chaseGlobalVariableAtRate"]
+		},
+		"Chase Global Variable Over Time": {
+			"arguments": ["Variable", "Destination", "Duration", "Reevalulation"],
+			"action": true,
+			"caseSensitive": false,
+			"text": ["chaseGlobalVariableOverTime"]
+		},
+		"Chase Player Variable At Rate": {
+			"arguments": ["Player", "Variable", "Destination", "Rate", "Reevalulation"],
+			"action": true,
+			"caseSensitive": false,
+			"text": ["chasePlayerVariableAtRate"]
+		},
+		"Chase Player Variable Over Time": {
+			"arguments": ["Player", "Variable", "Destination", "Duration", "Reevalulation"],
+			"action": true,
+			"caseSensitive": false,
+			"text": ["chasePlayerVariableOverTime"]
+		},
+		"Clear Status": {
+			"arguments": ["Player", "Status"],
+			"action": true,
+			"caseSensitive": false,
+			"text": ["clearStatus"]
+		}
 	},
 	"varNameRules": [
 		{

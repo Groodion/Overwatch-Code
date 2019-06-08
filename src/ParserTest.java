@@ -2,6 +2,7 @@
 
 import java.io.FileInputStream;
 
+import overwatchcode.Manager;
 import overwatchcode.interpreter.OVCVisistor;
 import overwatchcode.parser.OWCParser;
 import overwatchcode.parser.SimpleNode;
@@ -29,5 +30,7 @@ public class ParserTest {
 		block.updateNames(null, null, null);
 		
 		System.out.println(block.toOVWCode(true));
+		System.out.println("");
+		System.out.println(Manager.INSTANCE.getReport());
 	}
 }

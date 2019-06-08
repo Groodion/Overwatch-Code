@@ -30,5 +30,12 @@
 	    <artifactId>json</artifactId>
 	    <version>20180813</version>
 	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.openjfx/javafx -->
+	<dependency>
+	    <groupId>org.openjfx</groupId>
+	    <artifactId>javafx</artifactId>
+	    <version>13-ea+8</version>
+	    <type>pom</type>
+	</dependency>
   </dependencies>
 </project>
