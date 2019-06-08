@@ -1,0 +1,233 @@
+/**
+ * JJTree template file created by SF JavaCC plugin 1.5.17+ wizard for JavaCC 1.5.0+
+ */options{   MULTI					 = true;
+   STATIC					 = false;
+   IGNORE_CASE 				 = true; 
+   COMMON_TOKEN_ACTION 		 = false;
+   TOKEN_MANAGER_USES_PARSER = true;
+   USER_TOKEN_MANAGER 		 = false;
+   USER_CHAR_STREAM 		 = false;
+   BUILD_PARSER 			 = true;
+   BUILD_TOKEN_MANAGER 		 = true;
+   TRACK_TOKENS 			 = true;
+   NODE_USES_PARSER 		 = true;
+   NODE_SCOPE_HOOK 			 = true;
+   BUILD_NODE_FILES 		 = true;
+   VISITOR 					 = true;
+   VISITOR_RETURN_TYPE 		 = "overwatchcode.workshop.Block";
+   VISITOR_DATA_TYPE  		 = "overwatchcode.workshop.Block";
+}PARSER_BEGIN(OWCParser)package overwatchcode.parser;
+
+public class OWCParser extends OWCParserBase{}PARSER_END(OWCParser)
+//  =================================================================
+//  Define the token manager.
+//  =================================================================
+SKIP :{  < " " | "\t" | "\r" | "\n" | "\r\n" >| < "//" (~[ "\n", "\r" ])* ("\n" | "\r" | "\r\n") >| < "/*" (~[ "*" ])* "*" (~[ "/" ] (~[ "*" ])* "*")* "/" >}TOKEN : /* LITERALS */{  < NUMBER_LITERAL : [ "0"-"9" ] ([ "0"-"9" ])* ("." ([ "0"-"9" ])*)? >| < BOOLEAN_LITERAL: < TRUE > | < FALSE >>
+| < #TRUE: "true">
+| < #FALSE: "false">
+}
+TOKEN: /* KEYWORDS */
+{
+  < SCOPE_ALL: "?">
+| < IF: "if">
+| < FOR: "for">
+| < WHILE: "while">
+| < FOREACH: "foreach">
+}
+TOKEN : /* IDENTIFIERS */{  < IDENTIFIER : [ "_", "a"-"z", "A"-"Z" ] ([ "0"-"9", "_", "a"-"z", "A"-"Z" ])* >}
+TOKEN : /* OPERATORS */
+{
+  < GT: ">">
+| < GTEQ: ">=">
+| < ST: "<">
+| < STEQ: "<=">
+| < EQ: "==">
+| < NEQ: "!=">
+| < NOT_OP: "!">
+}
+
+SimpleNode Start() :{}{  ( Rule() )*
+  < EOF >
+  {
+    return jjtThis;
+  }
+}
+
+void Rule() :
+{}
+{
+  RuleEvent() (LOOKAHEAD("<") RuleScope())? RuleName() RuleCondition() "{"
+  	(LOOKAHEAD(2) Statement() (LOOKAHEAD(";") ";")?)*
+  "}"
+}
+void RuleEvent():
+{}
+{
+  < IDENTIFIER >
+}
+void RuleName():
+{}
+{
+  < IDENTIFIER >
+}
+void RuleScope():
+{}
+{
+  "<" TeamScope() (LOOKAHEAD(2) "," PlayerScope())? ">"
+}
+void TeamScope():
+{}
+{
+  < IDENTIFIER >
+| < SCOPE_ALL >
+}
+void PlayerScope():
+{}
+{
+  < IDENTIFIER >
+| < SCOPE_ALL >
+}
+void RuleCondition():
+{}
+{
+  "(" (Expression())? ")"
+}
+
+void Statement():
+{}
+{
+  LOOKAHEAD(2) "$" FunctionCall()
+| LOOKAHEAD(2) Assignment()
+}
+void FunctionCall():
+{}
+{
+  FunctionName() "(" (LOOKAHEAD(2) Arguments())? ")"
+}
+void FunctionName():
+{}
+{
+  < IDENTIFIER >
+}
+void Arguments():
+{}
+{
+  Expression() (LOOKAHEAD(2) "," Expression())*
+}
+void VarName(): { }
+{
+  < IDENTIFIER >
+}
+void ArrayItem():
+{}
+{
+  "[" AdditiveExpression() "]"
+}
+void Chain():
+{}
+{
+  LOOKAHEAD(2) FnArrayItem() (LOOKAHEAD(2) "." Chain())?
+| LOOKAHEAD(2) VarArrayItem() (LOOKAHEAD(2) "." Chain())?
+}
+void FnArrayItem():
+{}
+{
+	FunctionCall() (LOOKAHEAD(1) ArrayItem())?
+}
+void VarArrayItem():
+{}
+{
+	VarName() (LOOKAHEAD(1) ArrayItem())?
+}
+
+
+void Assignment() :
+{}
+{
+  Chain() "=" Expression()
+}
+
+void Expression():
+{}
+{
+  ConditionalOrExpression()
+}
+
+void ConditionalOrExpression():
+{}
+{
+  ConditionalAndExpression() ("||" ConditionalOrExpression())?
+}
+
+void ConditionalAndExpression():
+{}
+{
+  RelationalExpression() ("&&" ConditionalAndExpression())?
+}
+
+void RelationalExpression():
+{}
+{
+  AdditiveExpression() (RelationalOp() AdditiveExpression())?
+}
+void RelationalOp():
+{}
+{
+  "==" | "!=" | "<" | ">" | "<=" | ">="
+}
+
+void AdditiveExpression() :
+{}
+{
+  MultiplicativeExpression() (AdditiveOp() AdditiveExpression())?
+}
+void AdditiveOp():
+{}
+{
+  "+" | "-"
+}
+
+void MultiplicativeExpression():
+{}
+{
+  UnaryExpression() (MultiplocativeOp() MultiplicativeExpression())?
+}
+void MultiplocativeOp():
+{}
+{
+  "*" | "/" | "%" | "^"
+}
+
+void UnaryExpression() :
+{}
+{
+  Number()
+| Boolean()
+| Vector()
+| "!" UnaryExpression()
+| "(" Expression() ")"
+| VectorComponent()
+| Chain()
+}
+
+void VectorComponent():
+{}
+{
+  "[" Expression() "]" ( "->X" |"->Y" | "->Z" )
+}
+
+void Vector():
+{}
+{
+  "<" AdditiveExpression() "," AdditiveExpression() "," AdditiveExpression() ">"
+}
+void Number():
+{}
+{
+  < NUMBER_LITERAL >
+}
+void Boolean():
+{}
+{
+  < BOOLEAN_LITERAL >
+}

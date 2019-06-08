@@ -1,0 +1,10 @@
+onGlobal test(a.c + 3 == b) {
+		
+	x[33 + a.s] = indexOfArrayValue(i, v);
+	$LoopIf(3 > test || 2 < 5)
+}
+
+onPlayer <?, Torbjorn> test2() {
+	EventPlayer.s[1].t.t = x[12*3] + f % a + 2 - 3 + 4 - 5
+	SortedArray(a, b).c[a].d = a * ([<a, CountOf(d), c+d>]->X + 1)
+}

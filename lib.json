@@ -1,0 +1,68 @@
+{
+	"keywords": {
+		"EN": {
+			"rule": "rule",
+			"event": "event",
+			"conditions": "conditions",
+			"actions": "actions"
+		},
+		"DE": {
+			"rule": "Regel",
+			"event": "Event",
+			"conditions": "Bedingungen",
+			"actions": "Aktionen"
+		}
+	},
+	"events": {
+		"Ongoing - Global": {
+			"global": true,
+			"caseSensitive": false,
+			"text": ["onGlobal", "ongoingGlobal"]
+		},
+		"Ongoing - Each Player": {
+			"global": false,
+			"caseSensitive": false,
+			"text": ["onPlayer", "ongoingEachPlayer"]
+		},
+		"Player earned elimination": {
+			"global": false,
+			"caseSensitive": false,
+			"text": ["plElimination", "playerEarnedElimination"]
+		},
+		"Player dealt final blow": {
+			"global": false,
+			"caseSensitive": false,
+			"text": ["plFinalBlow", "playerDealtFinalBlow"]
+		},
+		"Player dealt damage": {
+			"global": false,
+			"caseSensitive": false,
+			"text": ["plDealtDamage", "playerDealtDamage"]
+		},
+		"Player took damage": {
+			"global": false,
+			"caseSensitive": false,
+			"text": ["plTookDamage", "playerTookDamage"]
+		},
+		"Player Died": {
+			"global": false,
+			"caseSensitive": false,
+			"text": ["plDied", "playerDied"]
+		}
+	},
+	"systemVariables": {
+		"Event Player" : {
+			"ruleEvents": ["Ongoing - Each Player", "Player earned elimination", "Player dealt final blow", "Player dealt damage", "Player took damage", "Player Died"],
+			"text": ["EventPlayer"],
+			"caseSensitive": false
+		}
+	},
+	"functions": {
+	},
+	"varNameRules": [
+		{
+			"fillTopDown": true,
+			"ignoreLetters": true
+		}
+	]
+}
