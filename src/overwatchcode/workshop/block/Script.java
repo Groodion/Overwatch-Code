@@ -20,6 +20,12 @@ public class Script extends Block {
 		return rules;
 	}
 	
+	public void resolveContainerBlocks() {
+		for(Rule rule: rules) {
+			rule.resolveContainers();
+		}
+	}
+	
 	@Override
 	public void updateNames(RuleEvent event, String ruleName, List<WorkshopFunction> functions) {
 		for(Rule rule: rules) {

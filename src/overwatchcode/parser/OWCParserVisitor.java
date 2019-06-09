@@ -12,6 +12,7 @@ public interface OWCParserVisitor
   public overwatchcode.workshop.Block visit(ASTTeamScope node, overwatchcode.workshop.Block data);
   public overwatchcode.workshop.Block visit(ASTPlayerScope node, overwatchcode.workshop.Block data);
   public overwatchcode.workshop.Block visit(ASTRuleCondition node, overwatchcode.workshop.Block data);
+  public overwatchcode.workshop.Block visit(ASTLineStatement node, overwatchcode.workshop.Block data);
   public overwatchcode.workshop.Block visit(ASTStatement node, overwatchcode.workshop.Block data);
   public overwatchcode.workshop.Block visit(ASTFunctionCall node, overwatchcode.workshop.Block data);
   public overwatchcode.workshop.Block visit(ASTFunctionName node, overwatchcode.workshop.Block data);
@@ -37,5 +38,8 @@ public interface OWCParserVisitor
   public overwatchcode.workshop.Block visit(ASTNumber node, overwatchcode.workshop.Block data);
   public overwatchcode.workshop.Block visit(ASTBoolean node, overwatchcode.workshop.Block data);
   public overwatchcode.workshop.Block visit(ASTString node, overwatchcode.workshop.Block data);
+  public overwatchcode.workshop.Block visit(ASTIf node, overwatchcode.workshop.Block data);
+  public overwatchcode.workshop.Block visit(ASTIfElseRest node, overwatchcode.workshop.Block data);
+  public overwatchcode.workshop.Block visit(ASTElse node, overwatchcode.workshop.Block data);
 }
-/* JavaCC - OriginalChecksum=ce573423ad580e8763d259ba02424e30 (do not edit this line) */
+/* JavaCC - OriginalChecksum=7ac62733bd59a8ca788696ce541f35e4 (do not edit this line) */

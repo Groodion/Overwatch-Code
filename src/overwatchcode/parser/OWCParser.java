@@ -70,7 +70,7 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
       }
       RuleName();
       RuleCondition();
-      jj_consume_token(22);
+      jj_consume_token(23);
       label_2:
       while (true) {
         if (jj_2_2(2)) {
@@ -79,11 +79,6 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
           break label_2;
         }
         Statement();
-        if (jj_2_3(2147483647)) {
-          jj_consume_token(23);
-        } else {
-          ;
-        }
       }
       jj_consume_token(24);
     } catch (Throwable jjte000) {
@@ -155,7 +150,7 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
     try {
       jj_consume_token(ST);
       TeamScope();
-      if (jj_2_4(2)) {
+      if (jj_2_3(2)) {
         jj_consume_token(25);
         PlayerScope();
       } else {
@@ -260,7 +255,7 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
       case ST:
       case NOT_OP:
       case 26:
-      case 29:
+      case 30:
         Expression();
         break;
       default:
@@ -268,6 +263,62 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
         ;
       }
       jj_consume_token(27);
+    } catch (Throwable jjte000) {
+    if (jjtc000) {
+      jjtree.clearNodeScope(jjtn000);
+      jjtc000 = false;
+    } else {
+      jjtree.popNode();
+    }
+    if (jjte000 instanceof RuntimeException) {
+      {if (true) throw (RuntimeException)jjte000;}
+    }
+    if (jjte000 instanceof ParseException) {
+      {if (true) throw (ParseException)jjte000;}
+    }
+    {if (true) throw (Error)jjte000;}
+    } finally {
+    if (jjtc000) {
+      jjtree.closeNodeScope(jjtn000, true);
+      jjtreeCloseNodeScope(jjtn000);
+      jjtn000.jjtSetLastToken(getToken(0));
+    }
+    }
+  }
+
+  final public void LineStatement() throws ParseException {
+ /*@bgen(jjtree) LineStatement */
+  ASTLineStatement jjtn000 = new ASTLineStatement(this, JJTLINESTATEMENT);
+  boolean jjtc000 = true;
+  jjtree.openNodeScope(jjtn000);
+  jjtreeOpenNodeScope(jjtn000);
+  jjtn000.jjtSetFirstToken(getToken(1));
+    try {
+      if (jj_2_4(2)) {
+        FunctionCall();
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case 28:
+          jj_consume_token(28);
+          break;
+        default:
+          jj_la1[4] = jj_gen;
+          ;
+        }
+      } else if (jj_2_5(2)) {
+        jj_consume_token(29);
+        Assignment();
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case 28:
+          jj_consume_token(28);
+          break;
+        default:
+          jj_la1[5] = jj_gen;
+          ;
+        }
+      } else {
+        jj_consume_token(-1);
+        throw new ParseException();
+      }
     } catch (Throwable jjte000) {
     if (jjtc000) {
       jjtree.clearNodeScope(jjtn000);
@@ -299,11 +350,10 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
   jjtreeOpenNodeScope(jjtn000);
   jjtn000.jjtSetFirstToken(getToken(1));
     try {
-      if (jj_2_5(2)) {
-        FunctionCall();
-      } else if (jj_2_6(2)) {
-        jj_consume_token(28);
-        Assignment();
+      if (jj_2_6(2)) {
+        LineStatement();
+      } else if (jj_2_7(2)) {
+        If();
       } else {
         jj_consume_token(-1);
         throw new ParseException();
@@ -341,7 +391,7 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
     try {
       FunctionName();
       jj_consume_token(26);
-      if (jj_2_7(2)) {
+      if (jj_2_8(2)) {
         Arguments();
       } else {
         ;
@@ -399,7 +449,7 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
       Expression();
       label_3:
       while (true) {
-        if (jj_2_8(2)) {
+        if (jj_2_9(2)) {
           ;
         } else {
           break label_3;
@@ -456,9 +506,9 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
   jjtreeOpenNodeScope(jjtn000);
   jjtn000.jjtSetFirstToken(getToken(1));
     try {
-      jj_consume_token(29);
-      AdditiveExpression();
       jj_consume_token(30);
+      AdditiveExpression();
+      jj_consume_token(31);
     } catch (Throwable jjte000) {
     if (jjtc000) {
       jjtree.clearNodeScope(jjtn000);
@@ -490,18 +540,18 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
   jjtreeOpenNodeScope(jjtn000);
   jjtn000.jjtSetFirstToken(getToken(1));
     try {
-      if (jj_2_11(2)) {
+      if (jj_2_12(2)) {
         FnArrayItem();
-        if (jj_2_9(2)) {
-          jj_consume_token(31);
+        if (jj_2_10(2)) {
+          jj_consume_token(32);
           Chain();
         } else {
           ;
         }
-      } else if (jj_2_12(2)) {
+      } else if (jj_2_13(2)) {
         VarArrayItem();
-        if (jj_2_10(2)) {
-          jj_consume_token(31);
+        if (jj_2_11(2)) {
+          jj_consume_token(32);
           Chain();
         } else {
           ;
@@ -543,11 +593,11 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
     try {
       FunctionCall();
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case 29:
+      case 30:
         ArrayItem();
         break;
       default:
-        jj_la1[4] = jj_gen;
+        jj_la1[6] = jj_gen;
         ;
       }
     } catch (Throwable jjte000) {
@@ -583,11 +633,11 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
     try {
       VarName();
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case 29:
+      case 30:
         ArrayItem();
         break;
       default:
-        jj_la1[5] = jj_gen;
+        jj_la1[7] = jj_gen;
         ;
       }
     } catch (Throwable jjte000) {
@@ -622,7 +672,7 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
   jjtn000.jjtSetFirstToken(getToken(1));
     try {
       Chain();
-      jj_consume_token(32);
+      jj_consume_token(33);
       Expression();
     } catch (Throwable jjte000) {
     if (jjtc000) {
@@ -689,12 +739,12 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
     try {
       ConditionalAndExpression();
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case 33:
-        jj_consume_token(33);
+      case 34:
+        jj_consume_token(34);
         ConditionalOrExpression();
         break;
       default:
-        jj_la1[6] = jj_gen;
+        jj_la1[8] = jj_gen;
         ;
       }
     } catch (Throwable jjte000) {
@@ -730,12 +780,12 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
     try {
       RelationalExpression();
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case 34:
-        jj_consume_token(34);
+      case 35:
+        jj_consume_token(35);
         ConditionalAndExpression();
         break;
       default:
-        jj_la1[7] = jj_gen;
+        jj_la1[9] = jj_gen;
         ;
       }
     } catch (Throwable jjte000) {
@@ -781,7 +831,7 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
         AdditiveExpression();
         break;
       default:
-        jj_la1[8] = jj_gen;
+        jj_la1[10] = jj_gen;
         ;
       }
     } catch (Throwable jjte000) {
@@ -835,7 +885,7 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
         jj_consume_token(GTEQ);
         break;
       default:
-        jj_la1[9] = jj_gen;
+        jj_la1[11] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -858,13 +908,13 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
     try {
       MultiplicativeExpression();
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case 35:
       case 36:
+      case 37:
         AdditiveOp();
         AdditiveExpression();
         break;
       default:
-        jj_la1[10] = jj_gen;
+        jj_la1[12] = jj_gen;
         ;
       }
     } catch (Throwable jjte000) {
@@ -899,14 +949,14 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
   jjtn000.jjtSetFirstToken(getToken(1));
     try {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case 35:
-        jj_consume_token(35);
-        break;
       case 36:
         jj_consume_token(36);
         break;
+      case 37:
+        jj_consume_token(37);
+        break;
       default:
-        jj_la1[11] = jj_gen;
+        jj_la1[13] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -929,15 +979,15 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
     try {
       UnaryExpression();
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case 37:
       case 38:
       case 39:
       case 40:
+      case 41:
         MultiplocativeOp();
         MultiplicativeExpression();
         break;
       default:
-        jj_la1[12] = jj_gen;
+        jj_la1[14] = jj_gen;
         ;
       }
     } catch (Throwable jjte000) {
@@ -972,9 +1022,6 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
   jjtn000.jjtSetFirstToken(getToken(1));
     try {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case 37:
-        jj_consume_token(37);
-        break;
       case 38:
         jj_consume_token(38);
         break;
@@ -984,8 +1031,11 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
       case 40:
         jj_consume_token(40);
         break;
+      case 41:
+        jj_consume_token(41);
+        break;
       default:
-        jj_la1[13] = jj_gen;
+        jj_la1[15] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -1028,14 +1078,14 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
         Expression();
         jj_consume_token(27);
         break;
-      case 29:
+      case 30:
         VectorComponent();
         break;
       case IDENTIFIER:
         Chain();
         break;
       default:
-        jj_la1[14] = jj_gen;
+        jj_la1[16] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -1070,21 +1120,21 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
   jjtreeOpenNodeScope(jjtn000);
   jjtn000.jjtSetFirstToken(getToken(1));
     try {
-      jj_consume_token(29);
-      Expression();
       jj_consume_token(30);
+      Expression();
+      jj_consume_token(31);
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case 41:
-        jj_consume_token(41);
-        break;
       case 42:
         jj_consume_token(42);
         break;
       case 43:
         jj_consume_token(43);
         break;
+      case 44:
+        jj_consume_token(44);
+        break;
       default:
-        jj_la1[15] = jj_gen;
+        jj_la1[17] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -1203,6 +1253,134 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
     }
   }
 
+  final public void If() throws ParseException {
+ /*@bgen(jjtree) If */
+  ASTIf jjtn000 = new ASTIf(this, JJTIF);
+  boolean jjtc000 = true;
+  jjtree.openNodeScope(jjtn000);
+  jjtreeOpenNodeScope(jjtn000);
+  jjtn000.jjtSetFirstToken(getToken(1));
+    try {
+      jj_consume_token(IF);
+      jj_consume_token(26);
+      Expression();
+      jj_consume_token(27);
+      IfElseRest();
+      if (jj_2_14(2)) {
+        Else();
+      } else {
+        ;
+      }
+    } catch (Throwable jjte000) {
+    if (jjtc000) {
+      jjtree.clearNodeScope(jjtn000);
+      jjtc000 = false;
+    } else {
+      jjtree.popNode();
+    }
+    if (jjte000 instanceof RuntimeException) {
+      {if (true) throw (RuntimeException)jjte000;}
+    }
+    if (jjte000 instanceof ParseException) {
+      {if (true) throw (ParseException)jjte000;}
+    }
+    {if (true) throw (Error)jjte000;}
+    } finally {
+    if (jjtc000) {
+      jjtree.closeNodeScope(jjtn000, true);
+      jjtreeCloseNodeScope(jjtn000);
+      jjtn000.jjtSetLastToken(getToken(0));
+    }
+    }
+  }
+
+  final public void IfElseRest() throws ParseException {
+ /*@bgen(jjtree) IfElseRest */
+  ASTIfElseRest jjtn000 = new ASTIfElseRest(this, JJTIFELSEREST);
+  boolean jjtc000 = true;
+  jjtree.openNodeScope(jjtn000);
+  jjtreeOpenNodeScope(jjtn000);
+  jjtn000.jjtSetFirstToken(getToken(1));
+    try {
+      if (jj_2_15(2)) {
+        jj_consume_token(23);
+        label_4:
+        while (true) {
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case IF:
+          case IDENTIFIER:
+          case 29:
+            ;
+            break;
+          default:
+            jj_la1[18] = jj_gen;
+            break label_4;
+          }
+          Statement();
+        }
+        jj_consume_token(24);
+      } else if (jj_2_16(2)) {
+        Statement();
+      } else {
+        jj_consume_token(-1);
+        throw new ParseException();
+      }
+    } catch (Throwable jjte000) {
+    if (jjtc000) {
+      jjtree.clearNodeScope(jjtn000);
+      jjtc000 = false;
+    } else {
+      jjtree.popNode();
+    }
+    if (jjte000 instanceof RuntimeException) {
+      {if (true) throw (RuntimeException)jjte000;}
+    }
+    if (jjte000 instanceof ParseException) {
+      {if (true) throw (ParseException)jjte000;}
+    }
+    {if (true) throw (Error)jjte000;}
+    } finally {
+    if (jjtc000) {
+      jjtree.closeNodeScope(jjtn000, true);
+      jjtreeCloseNodeScope(jjtn000);
+      jjtn000.jjtSetLastToken(getToken(0));
+    }
+    }
+  }
+
+  final public void Else() throws ParseException {
+ /*@bgen(jjtree) Else */
+  ASTElse jjtn000 = new ASTElse(this, JJTELSE);
+  boolean jjtc000 = true;
+  jjtree.openNodeScope(jjtn000);
+  jjtreeOpenNodeScope(jjtn000);
+  jjtn000.jjtSetFirstToken(getToken(1));
+    try {
+      jj_consume_token(ELSE);
+      IfElseRest();
+    } catch (Throwable jjte000) {
+    if (jjtc000) {
+      jjtree.clearNodeScope(jjtn000);
+      jjtc000 = false;
+    } else {
+      jjtree.popNode();
+    }
+    if (jjte000 instanceof RuntimeException) {
+      {if (true) throw (RuntimeException)jjte000;}
+    }
+    if (jjte000 instanceof ParseException) {
+      {if (true) throw (ParseException)jjte000;}
+    }
+    {if (true) throw (Error)jjte000;}
+    } finally {
+    if (jjtc000) {
+      jjtree.closeNodeScope(jjtn000, true);
+      jjtreeCloseNodeScope(jjtn000);
+      jjtn000.jjtSetLastToken(getToken(0));
+    }
+    }
+  }
+
   private boolean jj_2_1(int xla) {
     jj_la = xla; jj_lastpos = jj_scanpos = token;
     try { return !jj_3_1(); }
@@ -1287,187 +1465,347 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
     finally { jj_save(11, xla); }
   }
 
-  private boolean jj_3R_9() {
-    if (jj_3R_14()) return true;
+  private boolean jj_2_13(int xla) {
+    jj_la = xla; jj_lastpos = jj_scanpos = token;
+    try { return !jj_3_13(); }
+    catch(LookaheadSuccess ls) { return true; }
+    finally { jj_save(12, xla); }
+  }
+
+  private boolean jj_2_14(int xla) {
+    jj_la = xla; jj_lastpos = jj_scanpos = token;
+    try { return !jj_3_14(); }
+    catch(LookaheadSuccess ls) { return true; }
+    finally { jj_save(13, xla); }
+  }
+
+  private boolean jj_2_15(int xla) {
+    jj_la = xla; jj_lastpos = jj_scanpos = token;
+    try { return !jj_3_15(); }
+    catch(LookaheadSuccess ls) { return true; }
+    finally { jj_save(14, xla); }
+  }
+
+  private boolean jj_2_16(int xla) {
+    jj_la = xla; jj_lastpos = jj_scanpos = token;
+    try { return !jj_3_16(); }
+    catch(LookaheadSuccess ls) { return true; }
+    finally { jj_save(15, xla); }
+  }
+
+  private boolean jj_3R_8() {
+    if (jj_3R_13()) return true;
     return false;
   }
 
-  private boolean jj_3R_7() {
-    if (jj_3R_10()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_12() {
-    if (jj_3R_15()) return true;
+  private boolean jj_3R_15() {
+    if (jj_3R_20()) return true;
     Token xsp;
     xsp = jj_scanpos;
-    if (jj_3R_16()) jj_scanpos = xsp;
+    if (jj_3R_21()) jj_scanpos = xsp;
     return false;
   }
 
-  private boolean jj_3R_42() {
+  private boolean jj_3R_48() {
     if (jj_scan_token(STRING_LITERAL)) return true;
     return false;
   }
 
-  private boolean jj_3R_11() {
-    if (jj_3R_6()) return true;
+  private boolean jj_3R_14() {
+    if (jj_3R_7()) return true;
     return false;
   }
 
-  private boolean jj_3R_40() {
+  private boolean jj_3R_46() {
     if (jj_scan_token(BOOLEAN_LITERAL)) return true;
     return false;
   }
 
-  private boolean jj_3R_39() {
+  private boolean jj_3R_45() {
     if (jj_scan_token(NUMBER_LITERAL)) return true;
     return false;
   }
 
-  private boolean jj_3_12() {
-    if (jj_3R_12()) return true;
+  private boolean jj_3_13() {
+    if (jj_3R_15()) return true;
     Token xsp;
     xsp = jj_scanpos;
-    if (jj_3_10()) jj_scanpos = xsp;
+    if (jj_3_11()) jj_scanpos = xsp;
     return false;
   }
 
-  private boolean jj_3_11() {
-    if (jj_3R_11()) return true;
+  private boolean jj_3_12() {
+    if (jj_3R_14()) return true;
+    return false;
+  }
+
+  private boolean jj_3_9() {
+    if (jj_scan_token(25)) return true;
+    if (jj_3R_12()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_13() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3_12()) {
+    jj_scanpos = xsp;
+    if (jj_3_13()) return true;
+    }
+    return false;
+  }
+
+  private boolean jj_3R_47() {
+    if (jj_scan_token(ST)) return true;
+    if (jj_3R_28()) return true;
     return false;
   }
 
   private boolean jj_3_8() {
-    if (jj_scan_token(25)) return true;
-    if (jj_3R_9()) return true;
+    if (jj_3R_11()) return true;
     return false;
   }
 
-  private boolean jj_3R_10() {
+  private boolean jj_3R_24() {
+    if (jj_scan_token(30)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_49() {
+    if (jj_scan_token(30)) return true;
+    if (jj_3R_12()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_20() {
+    if (jj_scan_token(IDENTIFIER)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_34() {
+    if (jj_3R_44()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_43() {
+    if (jj_3R_13()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_42() {
+    if (jj_3R_49()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_31() {
+    if (jj_3R_35()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_11() {
+    if (jj_3R_12()) return true;
     Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3_11()) {
-    jj_scanpos = xsp;
-    if (jj_3_12()) return true;
+    while (true) {
+      xsp = jj_scanpos;
+      if (jj_3_9()) { jj_scanpos = xsp; break; }
     }
     return false;
   }
 
   private boolean jj_3R_41() {
-    if (jj_scan_token(ST)) return true;
-    if (jj_3R_22()) return true;
+    if (jj_scan_token(26)) return true;
+    if (jj_3R_12()) return true;
     return false;
   }
 
-  private boolean jj_3_7() {
-    if (jj_3R_8()) return true;
+  private boolean jj_3R_40() {
+    if (jj_scan_token(NOT_OP)) return true;
+    if (jj_3R_33()) return true;
     return false;
   }
 
-  private boolean jj_3R_18() {
-    if (jj_scan_token(29)) return true;
+  private boolean jj_3R_39() {
+    if (jj_3R_48()) return true;
     return false;
   }
 
-  private boolean jj_3R_43() {
-    if (jj_scan_token(29)) return true;
-    if (jj_3R_9()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_15() {
-    if (jj_scan_token(IDENTIFIER)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_28() {
-    if (jj_3R_38()) return true;
+  private boolean jj_3R_38() {
+    if (jj_3R_47()) return true;
     return false;
   }
 
   private boolean jj_3R_37() {
-    if (jj_3R_10()) return true;
+    if (jj_3R_46()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_18() {
+    if (jj_scan_token(IDENTIFIER)) return true;
     return false;
   }
 
   private boolean jj_3R_36() {
-    if (jj_3R_43()) return true;
+    if (jj_3R_45()) return true;
     return false;
   }
 
-  private boolean jj_3R_8() {
-    if (jj_3R_9()) return true;
+  private boolean jj_3R_33() {
     Token xsp;
-    while (true) {
-      xsp = jj_scanpos;
-      if (jj_3_8()) { jj_scanpos = xsp; break; }
+    xsp = jj_scanpos;
+    if (jj_3R_36()) {
+    jj_scanpos = xsp;
+    if (jj_3R_37()) {
+    jj_scanpos = xsp;
+    if (jj_3R_38()) {
+    jj_scanpos = xsp;
+    if (jj_3R_39()) {
+    jj_scanpos = xsp;
+    if (jj_3R_40()) {
+    jj_scanpos = xsp;
+    if (jj_3R_41()) {
+    jj_scanpos = xsp;
+    if (jj_3R_42()) {
+    jj_scanpos = xsp;
+    if (jj_3R_43()) return true;
+    }
+    }
+    }
+    }
+    }
+    }
+    }
+    return false;
+  }
+
+  private boolean jj_3R_7() {
+    if (jj_3R_18()) return true;
+    if (jj_scan_token(26)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_44() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_scan_token(38)) {
+    jj_scanpos = xsp;
+    if (jj_scan_token(39)) {
+    jj_scanpos = xsp;
+    if (jj_scan_token(40)) {
+    jj_scanpos = xsp;
+    if (jj_scan_token(41)) return true;
+    }
+    }
+    }
+    return false;
+  }
+
+  private boolean jj_3_7() {
+    if (jj_3R_10()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_5() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3_6()) {
+    jj_scanpos = xsp;
+    if (jj_3_7()) return true;
+    }
+    return false;
+  }
+
+  private boolean jj_3_6() {
+    if (jj_3R_9()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_30() {
+    if (jj_3R_33()) return true;
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_34()) jj_scanpos = xsp;
+    return false;
+  }
+
+  private boolean jj_3R_29() {
+    if (jj_3R_32()) return true;
+    return false;
+  }
+
+  private boolean jj_3_14() {
+    if (jj_3R_16()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_27() {
+    if (jj_scan_token(35)) return true;
+    return false;
+  }
+
+  private boolean jj_3_5() {
+    if (jj_scan_token(29)) return true;
+    if (jj_3R_8()) return true;
+    return false;
+  }
+
+  private boolean jj_3_4() {
+    if (jj_3R_7()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_9() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3_4()) {
+    jj_scanpos = xsp;
+    if (jj_3_5()) return true;
+    }
+    return false;
+  }
+
+  private boolean jj_3R_35() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_scan_token(36)) {
+    jj_scanpos = xsp;
+    if (jj_scan_token(37)) return true;
     }
     return false;
   }
 
   private boolean jj_3R_25() {
-    if (jj_3R_29()) return true;
+    if (jj_scan_token(34)) return true;
     return false;
   }
 
-  private boolean jj_3R_35() {
-    if (jj_scan_token(26)) return true;
-    if (jj_3R_9()) return true;
+  private boolean jj_3R_28() {
+    if (jj_3R_30()) return true;
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_31()) jj_scanpos = xsp;
     return false;
   }
 
-  private boolean jj_3R_34() {
-    if (jj_scan_token(NOT_OP)) return true;
-    if (jj_3R_27()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_33() {
-    if (jj_3R_42()) return true;
+  private boolean jj_3_3() {
+    if (jj_scan_token(25)) return true;
+    if (jj_3R_6()) return true;
     return false;
   }
 
   private boolean jj_3R_32() {
-    if (jj_3R_41()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_31() {
-    if (jj_3R_40()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_13() {
-    if (jj_scan_token(IDENTIFIER)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_30() {
-    if (jj_3R_39()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_27() {
     Token xsp;
     xsp = jj_scanpos;
-    if (jj_3R_30()) {
+    if (jj_scan_token(20)) {
     jj_scanpos = xsp;
-    if (jj_3R_31()) {
+    if (jj_scan_token(21)) {
     jj_scanpos = xsp;
-    if (jj_3R_32()) {
+    if (jj_scan_token(18)) {
     jj_scanpos = xsp;
-    if (jj_3R_33()) {
+    if (jj_scan_token(16)) {
     jj_scanpos = xsp;
-    if (jj_3R_34()) {
+    if (jj_scan_token(19)) {
     jj_scanpos = xsp;
-    if (jj_3R_35()) {
-    jj_scanpos = xsp;
-    if (jj_3R_36()) {
-    jj_scanpos = xsp;
-    if (jj_3R_37()) return true;
-    }
-    }
+    if (jj_scan_token(17)) return true;
     }
     }
     }
@@ -1477,107 +1815,25 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
   }
 
   private boolean jj_3R_6() {
-    if (jj_3R_13()) return true;
-    if (jj_scan_token(26)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_38() {
     Token xsp;
     xsp = jj_scanpos;
-    if (jj_scan_token(37)) {
-    jj_scanpos = xsp;
-    if (jj_scan_token(38)) {
-    jj_scanpos = xsp;
-    if (jj_scan_token(39)) {
-    jj_scanpos = xsp;
-    if (jj_scan_token(40)) return true;
-    }
-    }
-    }
-    return false;
-  }
-
-  private boolean jj_3_3() {
-    if (jj_scan_token(23)) return true;
-    return false;
-  }
-
-  private boolean jj_3_6() {
-    if (jj_scan_token(28)) return true;
-    if (jj_3R_7()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_4() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3_5()) {
-    jj_scanpos = xsp;
-    if (jj_3_6()) return true;
-    }
-    return false;
-  }
-
-  private boolean jj_3_5() {
-    if (jj_3R_6()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_23() {
-    if (jj_3R_26()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_24() {
-    if (jj_3R_27()) return true;
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3R_28()) jj_scanpos = xsp;
-    return false;
-  }
-
-  private boolean jj_3R_21() {
-    if (jj_scan_token(34)) return true;
-    return false;
-  }
-
-  private boolean jj_3_4() {
-    if (jj_scan_token(25)) return true;
-    if (jj_3R_5()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_29() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_scan_token(35)) {
-    jj_scanpos = xsp;
-    if (jj_scan_token(36)) return true;
-    }
-    return false;
-  }
-
-  private boolean jj_3R_19() {
-    if (jj_scan_token(33)) return true;
-    return false;
-  }
-
-  private boolean jj_3R_5() {
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_scan_token(14)) {
+    if (jj_scan_token(15)) {
     jj_scanpos = xsp;
     if (jj_scan_token(9)) return true;
     }
     return false;
   }
 
-  private boolean jj_3R_22() {
-    if (jj_3R_24()) return true;
+  private boolean jj_3R_17() {
+    if (jj_3R_5()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_26() {
+    if (jj_3R_28()) return true;
     Token xsp;
     xsp = jj_scanpos;
-    if (jj_3R_25()) jj_scanpos = xsp;
+    if (jj_3R_29()) jj_scanpos = xsp;
     return false;
   }
 
@@ -1586,71 +1842,84 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
     return false;
   }
 
-  private boolean jj_3R_26() {
+  private boolean jj_3R_23() {
+    if (jj_3R_26()) return true;
     Token xsp;
     xsp = jj_scanpos;
-    if (jj_scan_token(19)) {
-    jj_scanpos = xsp;
-    if (jj_scan_token(20)) {
-    jj_scanpos = xsp;
-    if (jj_scan_token(17)) {
-    jj_scanpos = xsp;
-    if (jj_scan_token(15)) {
-    jj_scanpos = xsp;
-    if (jj_scan_token(18)) {
-    jj_scanpos = xsp;
-    if (jj_scan_token(16)) return true;
-    }
-    }
-    }
-    }
-    }
-    return false;
-  }
-
-  private boolean jj_3R_20() {
-    if (jj_3R_22()) return true;
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3R_23()) jj_scanpos = xsp;
-    return false;
-  }
-
-  private boolean jj_3R_17() {
-    if (jj_3R_20()) return true;
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3R_21()) jj_scanpos = xsp;
-    return false;
-  }
-
-  private boolean jj_3_2() {
-    if (jj_3R_4()) return true;
-    return false;
-  }
-
-  private boolean jj_3_10() {
-    if (jj_scan_token(31)) return true;
-    if (jj_3R_10()) return true;
-    return false;
-  }
-
-  private boolean jj_3R_14() {
-    if (jj_3R_17()) return true;
-    Token xsp;
-    xsp = jj_scanpos;
-    if (jj_3R_19()) jj_scanpos = xsp;
-    return false;
-  }
-
-  private boolean jj_3_9() {
-    if (jj_scan_token(31)) return true;
-    if (jj_3R_10()) return true;
+    if (jj_3R_27()) jj_scanpos = xsp;
     return false;
   }
 
   private boolean jj_3R_16() {
-    if (jj_3R_18()) return true;
+    if (jj_scan_token(ELSE)) return true;
+    if (jj_3R_22()) return true;
+    return false;
+  }
+
+  private boolean jj_3_11() {
+    if (jj_scan_token(32)) return true;
+    if (jj_3R_13()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_19() {
+    if (jj_3R_23()) return true;
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3R_25()) jj_scanpos = xsp;
+    return false;
+  }
+
+  private boolean jj_3_10() {
+    if (jj_scan_token(32)) return true;
+    if (jj_3R_13()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_21() {
+    if (jj_3R_24()) return true;
+    return false;
+  }
+
+  private boolean jj_3_2() {
+    if (jj_3R_5()) return true;
+    return false;
+  }
+
+  private boolean jj_3_16() {
+    if (jj_3R_5()) return true;
+    return false;
+  }
+
+  private boolean jj_3_15() {
+    if (jj_scan_token(23)) return true;
+    Token xsp;
+    while (true) {
+      xsp = jj_scanpos;
+      if (jj_3R_17()) { jj_scanpos = xsp; break; }
+    }
+    if (jj_scan_token(24)) return true;
+    return false;
+  }
+
+  private boolean jj_3R_22() {
+    Token xsp;
+    xsp = jj_scanpos;
+    if (jj_3_15()) {
+    jj_scanpos = xsp;
+    if (jj_3_16()) return true;
+    }
+    return false;
+  }
+
+  private boolean jj_3R_12() {
+    if (jj_3R_19()) return true;
+    return false;
+  }
+
+  private boolean jj_3R_10() {
+    if (jj_scan_token(IF)) return true;
+    if (jj_scan_token(26)) return true;
     return false;
   }
 
@@ -1665,7 +1934,7 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
   private Token jj_scanpos, jj_lastpos;
   private int jj_la;
   private int jj_gen;
-  final private int[] jj_la1 = new int[16];
+  final private int[] jj_la1 = new int[19];
   static private int[] jj_la1_0;
   static private int[] jj_la1_1;
   static {
@@ -1673,12 +1942,12 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
       jj_la1_init_1();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x4000,0x4200,0x4200,0x24224130,0x20000000,0x20000000,0x0,0x0,0x1f8000,0x1f8000,0x0,0x0,0x0,0x0,0x24224130,0x0,};
+      jj_la1_0 = new int[] {0x8000,0x8200,0x8200,0x44448130,0x10000000,0x10000000,0x40000000,0x40000000,0x0,0x0,0x3f0000,0x3f0000,0x0,0x0,0x0,0x0,0x44448130,0x0,0x20008400,};
    }
    private static void jj_la1_init_1() {
-      jj_la1_1 = new int[] {0x0,0x0,0x0,0x0,0x0,0x0,0x2,0x4,0x0,0x0,0x18,0x18,0x1e0,0x1e0,0x0,0xe00,};
+      jj_la1_1 = new int[] {0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x4,0x8,0x0,0x0,0x30,0x30,0x3c0,0x3c0,0x0,0x1c00,0x0,};
    }
-  final private JJCalls[] jj_2_rtns = new JJCalls[12];
+  final private JJCalls[] jj_2_rtns = new JJCalls[16];
   private boolean jj_rescan = false;
   private int jj_gc = 0;
 
@@ -1693,7 +1962,7 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 16; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 19; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -1709,7 +1978,7 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
     jj_ntk = -1;
     jjtree.reset();
     jj_gen = 0;
-    for (int i = 0; i < 16; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 19; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -1720,7 +1989,7 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 16; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 19; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -1732,7 +2001,7 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
     jj_ntk = -1;
     jjtree.reset();
     jj_gen = 0;
-    for (int i = 0; i < 16; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 19; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -1742,7 +2011,7 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 16; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 19; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -1753,7 +2022,7 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
     jj_ntk = -1;
     jjtree.reset();
     jj_gen = 0;
-    for (int i = 0; i < 16; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 19; i++) jj_la1[i] = -1;
     for (int i = 0; i < jj_2_rtns.length; i++) jj_2_rtns[i] = new JJCalls();
   }
 
@@ -1865,12 +2134,12 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
   /** Generate ParseException. */
   public ParseException generateParseException() {
     jj_expentries.clear();
-    boolean[] la1tokens = new boolean[44];
+    boolean[] la1tokens = new boolean[45];
     if (jj_kind >= 0) {
       la1tokens[jj_kind] = true;
       jj_kind = -1;
     }
-    for (int i = 0; i < 16; i++) {
+    for (int i = 0; i < 19; i++) {
       if (jj_la1[i] == jj_gen) {
         for (int j = 0; j < 32; j++) {
           if ((jj_la1_0[i] & (1<<j)) != 0) {
@@ -1882,7 +2151,7 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
         }
       }
     }
-    for (int i = 0; i < 44; i++) {
+    for (int i = 0; i < 45; i++) {
       if (la1tokens[i]) {
         jj_expentry = new int[1];
         jj_expentry[0] = i;
@@ -1909,7 +2178,7 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
 
   private void jj_rescan_token() {
     jj_rescan = true;
-    for (int i = 0; i < 12; i++) {
+    for (int i = 0; i < 16; i++) {
     try {
       JJCalls p = jj_2_rtns[i];
       do {
@@ -1928,6 +2197,10 @@ public class OWCParser extends OWCParserBase/*@bgen(jjtree)*/implements OWCParse
             case 9: jj_3_10(); break;
             case 10: jj_3_11(); break;
             case 11: jj_3_12(); break;
+            case 12: jj_3_13(); break;
+            case 13: jj_3_14(); break;
+            case 14: jj_3_15(); break;
+            case 15: jj_3_16(); break;
           }
         }
         p = p.next;

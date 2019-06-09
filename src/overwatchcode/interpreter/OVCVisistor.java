@@ -12,10 +12,14 @@ import overwatchcode.parser.ASTBoolean;
 import overwatchcode.parser.ASTChain;
 import overwatchcode.parser.ASTConditionalAndExpression;
 import overwatchcode.parser.ASTConditionalOrExpression;
+import overwatchcode.parser.ASTElse;
 import overwatchcode.parser.ASTExpression;
 import overwatchcode.parser.ASTFnArrayItem;
 import overwatchcode.parser.ASTFunctionCall;
 import overwatchcode.parser.ASTFunctionName;
+import overwatchcode.parser.ASTIf;
+import overwatchcode.parser.ASTIfElseRest;
+import overwatchcode.parser.ASTLineStatement;
 import overwatchcode.parser.ASTMultiplicativeExpression;
 import overwatchcode.parser.ASTMultiplocativeOp;
 import overwatchcode.parser.ASTNumber;
@@ -65,6 +69,8 @@ import overwatchcode.workshop.block.Terminal;
 import overwatchcode.workshop.block.ValueAtIndex;
 import overwatchcode.workshop.block.Variable;
 import overwatchcode.workshop.block.Vector;
+import overwatchcode.workshop.block.container.Container;
+import overwatchcode.workshop.block.container.If;
 
 public class OVCVisistor implements overwatchcode.parser.OWCParserVisitor {
 
@@ -90,6 +96,8 @@ public class OVCVisistor implements overwatchcode.parser.OWCParserVisitor {
 		Script script = new Script();
 		
 		node.childrenAccept(this, script);
+		
+		script.resolveContainerBlocks();
 				
 		return script;
 	}
@@ -215,18 +223,27 @@ public class OVCVisistor implements overwatchcode.parser.OWCParserVisitor {
 	}
 
 	/**
-	 *   "$" FunctionCall()
-	 * | Assignment()
+	 *   LineStatement()
+	 * | If()
 	 */
 	@Override
 	public Block visit(ASTStatement node, Block data) {
-		Rule rule = (Rule) data;
+		Container container = (Container) data;
 		Block action = node.jjtGetChild(0).jjtAccept(this, data);
-		
-		rule.getActions().add(action);
+				
+		container.getActions().add(action);
 		
 		return action;
 	}
+	/**
+	 *   FunctionCall() ";")?
+	 * | "$" Assignment() ";")?
+	 */
+	@Override
+	public Block visit(ASTLineStatement node, Block data) {
+		return node.jjtGetChild(0).jjtAccept(this, data);
+	}
+
 
 	/**
 	 * FunctionName() "(" ( Arguments() )? ")"
@@ -608,5 +625,45 @@ public class OVCVisistor implements overwatchcode.parser.OWCParserVisitor {
 	@Override
 	public Block visit(ASTString node, Block data) {
 		return new Terminal(node.jjtGetFirstToken().image);
+	}
+
+	/**
+	 * "if" "(" Expression() ")" IfElseRest() ( Else() )?
+	 */
+	@Override
+	public Block visit(ASTIf node, Block data) {
+		If ifBlock = new If();
+		
+		Block condition = node.jjtGetChild(0).jjtAccept(this, data);
+		ifBlock.setCondition(condition);
+
+		for(int i = 1; i < node.jjtGetNumChildren(); i++) {
+			node.jjtGetChild(i).jjtAccept(this, ifBlock);
+		}
+		
+		return ifBlock;
+	}
+	/**
+	 *  "{" ( Statement() )* "}"
+	 * | Statement()
+	 */
+	@Override
+	public Block visit(ASTIfElseRest node, Block data) {
+		Container container = (Container) data;
+		
+		node.childrenAccept(this, container);
+		
+		return data;
+	}
+	/**
+	 *  "else" IfElseRest()
+	 */
+	@Override
+	public Block visit(ASTElse node, Block data) {
+		If ifBlock = (If) data;
+
+		node.childrenAccept(this, ifBlock.getElse());
+		
+		return ifBlock;
 	}
 }

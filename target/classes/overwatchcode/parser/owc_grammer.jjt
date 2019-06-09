@@ -31,6 +31,7 @@ TOKEN: /* KEYWORDS */
 {
   < SCOPE_ALL: "?">
 | < IF: "if">
+| < ELSE: "else">
 | < FOR: "for">
 | < WHILE: "while">
 | < FOREACH: "foreach">
@@ -58,7 +59,7 @@ void Rule() :
 {}
 {
   RuleEvent() (LOOKAHEAD("<") RuleScope())? RuleName() RuleCondition() "{"
-  	(LOOKAHEAD(2) Statement() (LOOKAHEAD(";") ";")?)*
+  	(LOOKAHEAD(2) Statement())*
   "}"
 }
 void RuleEvent():
@@ -94,11 +95,17 @@ void RuleCondition():
   "(" (Expression())? ")"
 }
 
+void LineStatement():
+{ }
+{
+  LOOKAHEAD(2) FunctionCall() (LOOKAHEAD(1) ";")?
+| LOOKAHEAD(2) "$" Assignment() (LOOKAHEAD(1) ";")?
+}
 void Statement():
 {}
 {
-  LOOKAHEAD(2) FunctionCall()
-| LOOKAHEAD(2) "$" Assignment()
+  LOOKAHEAD(2) LineStatement()
+| LOOKAHEAD(2) If()
 }
 void FunctionCall():
 {}
@@ -237,4 +244,21 @@ void String():
 {}
 {
   < STRING_LITERAL>
+}
+
+void If():
+{}
+{
+  "if" "(" Expression() ")" IfElseRest() ( LOOKAHEAD(2) Else() )?
+}
+void IfElseRest():
+{}
+{
+  LOOKAHEAD(2) "{" ( Statement() )* "}"
+| LOOKAHEAD(2) Statement()
+}
+void Else():
+{}
+{
+  "else" IfElseRest()
 }
