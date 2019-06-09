@@ -16,6 +16,14 @@ public class Function extends Condition {
 	public Function() {
 		arguments = new ArrayList<>();
 	}
+	public Function(String name, Block... arguments) {
+		this();
+		
+		this.name = name;
+		for(Block argument: arguments) {
+			this.arguments.add(argument);
+		}
+	}
 	
 	public String getName() {
 		return name;

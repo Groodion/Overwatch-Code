@@ -84,7 +84,6 @@ public class VarNameRule {
 	}
 
 	public String applyRule(String variableName, boolean global, String ruleName, RuleEvent event) {
-		System.out.println(variableName + " " + global + " " + scope);
 		if((isIgnoreLetters() && variableName.length() == 1) || (global && scope == VariableScope.PLAYER) || (!global && scope == VariableScope.GLOBAL)) {
 			return null;
 		}

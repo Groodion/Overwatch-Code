@@ -283,7 +283,21 @@
 			"action": true,
 			"caseSensitive": false,
 			"text": ["clearStatus"]
+		},
+		
+		"Skip": {
+			"arguments": ["Number of Actions"],
+			"action": true,
+			"caseSensitive": false,
+			"text": ["skip"]
+		},
+		"SkipIf": {
+			"arguments": ["Condition", "Number of Actions"],
+			"action": true,
+			"caseSensitive": false,
+			"text": ["skipIf"]
 		}
+
 	},
 	"varNameRules": [
 		{

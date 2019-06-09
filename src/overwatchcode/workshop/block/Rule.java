@@ -7,20 +7,19 @@ import overwatchcode.Manager;
 import overwatchcode.workshop.Block;
 import overwatchcode.workshop.KeywordContainer;
 import overwatchcode.workshop.WorkshopFunction;
+import overwatchcode.workshop.block.container.Container;
 
-public class Rule extends Block {
+public class Rule extends Container {
 
 	private RuleEvent event;
 	private TeamScope teamScope;
 	private PlayerScope playerScope;
 	private String name;
 	private List<RuleCondition> conditions;
-	private List<Block> actions;
 	
 	
 	public Rule() {
 		conditions = new ArrayList<>();
-		actions = new ArrayList<>();
 		
 		teamScope = TeamScope.All;
 		playerScope = PlayerScope.ALL;
@@ -54,8 +53,10 @@ public class Rule extends Block {
 	public List<RuleCondition> getConditions() {
 		return conditions;
 	}
-	public List<Block> getActions() {
-		return actions;
+	
+	@Override
+	protected List<Block> buildBlocks() {
+		return getActions();
 	}
 	
 	@Override
@@ -65,7 +66,7 @@ public class Rule extends Block {
 		for(RuleCondition condition: conditions) {
 			condition.updateNames(this.event, name, f);
 		}
-		for(Block action: actions) {
+		for(Block action: getActions()) {
 			action.updateNames(this.event, name, f);
 		}
 	}	
@@ -113,7 +114,7 @@ public class Rule extends Block {
 		sB.append(kwc.getActions());
 		if(!min) sB.append("\n\t");
 		sB.append('{');
-		for(Block action: actions) {
+		for(Block action: getActions()) {
 			if(!min) sB.append("\n\t\t");
 			sB.append(action.toOVWCode(min));
 			sB.append(';');

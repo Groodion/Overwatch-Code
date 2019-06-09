@@ -10,6 +10,13 @@ public class Not extends Condition {
 	private Block a;
 	
 
+	public Not() {
+		
+	}
+	public Not(Block a) {
+		this.a = a;
+	}
+	
 	public Block getA() {
 		return a;
 	}

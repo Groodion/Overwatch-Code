@@ -11,31 +11,35 @@ public interface OWCParserTreeConstants
   public int JJTTEAMSCOPE = 5;
   public int JJTPLAYERSCOPE = 6;
   public int JJTRULECONDITION = 7;
-  public int JJTSTATEMENT = 8;
-  public int JJTFUNCTIONCALL = 9;
-  public int JJTFUNCTIONNAME = 10;
-  public int JJTARGUMENTS = 11;
-  public int JJTVARNAME = 12;
-  public int JJTARRAYITEM = 13;
-  public int JJTCHAIN = 14;
-  public int JJTFNARRAYITEM = 15;
-  public int JJTVARARRAYITEM = 16;
-  public int JJTASSIGNMENT = 17;
-  public int JJTEXPRESSION = 18;
-  public int JJTCONDITIONALOREXPRESSION = 19;
-  public int JJTCONDITIONALANDEXPRESSION = 20;
-  public int JJTRELATIONALEXPRESSION = 21;
-  public int JJTRELATIONALOP = 22;
-  public int JJTADDITIVEEXPRESSION = 23;
-  public int JJTADDITIVEOP = 24;
-  public int JJTMULTIPLICATIVEEXPRESSION = 25;
-  public int JJTMULTIPLOCATIVEOP = 26;
-  public int JJTUNARYEXPRESSION = 27;
-  public int JJTVECTORCOMPONENT = 28;
-  public int JJTVECTOR = 29;
-  public int JJTNUMBER = 30;
-  public int JJTBOOLEAN = 31;
-  public int JJTSTRING = 32;
+  public int JJTLINESTATEMENT = 8;
+  public int JJTSTATEMENT = 9;
+  public int JJTFUNCTIONCALL = 10;
+  public int JJTFUNCTIONNAME = 11;
+  public int JJTARGUMENTS = 12;
+  public int JJTVARNAME = 13;
+  public int JJTARRAYITEM = 14;
+  public int JJTCHAIN = 15;
+  public int JJTFNARRAYITEM = 16;
+  public int JJTVARARRAYITEM = 17;
+  public int JJTASSIGNMENT = 18;
+  public int JJTEXPRESSION = 19;
+  public int JJTCONDITIONALOREXPRESSION = 20;
+  public int JJTCONDITIONALANDEXPRESSION = 21;
+  public int JJTRELATIONALEXPRESSION = 22;
+  public int JJTRELATIONALOP = 23;
+  public int JJTADDITIVEEXPRESSION = 24;
+  public int JJTADDITIVEOP = 25;
+  public int JJTMULTIPLICATIVEEXPRESSION = 26;
+  public int JJTMULTIPLOCATIVEOP = 27;
+  public int JJTUNARYEXPRESSION = 28;
+  public int JJTVECTORCOMPONENT = 29;
+  public int JJTVECTOR = 30;
+  public int JJTNUMBER = 31;
+  public int JJTBOOLEAN = 32;
+  public int JJTSTRING = 33;
+  public int JJTIF = 34;
+  public int JJTIFELSEREST = 35;
+  public int JJTELSE = 36;
 
 
   public String[] jjtNodeName = {
@@ -47,6 +51,7 @@ public interface OWCParserTreeConstants
     "TeamScope",
     "PlayerScope",
     "RuleCondition",
+    "LineStatement",
     "Statement",
     "FunctionCall",
     "FunctionName",
@@ -72,6 +77,9 @@ public interface OWCParserTreeConstants
     "Number",
     "Boolean",
     "String",
+    "If",
+    "IfElseRest",
+    "Else",
   };
 }
-/* JavaCC - OriginalChecksum=0cc2d07db5f843083473ba4e12b55003 (do not edit this line) */
+/* JavaCC - OriginalChecksum=e48eaceda6f1395d6ce97ed6d0be3dfd (do not edit this line) */
