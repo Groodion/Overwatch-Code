@@ -12,6 +12,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
+import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
+import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
+import org.fife.ui.rtextarea.RTextScrollPane;
+
+import javafx.embed.swing.SwingNode;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
@@ -38,15 +43,18 @@ public class Controller implements Initializable {
 	@FXML
 	private TextField varPathTF;
 	@FXML
-	private TextArea owcTA;
+	private SwingNode owcTAContainer;
+	private RSyntaxTextArea owcTA;
 	@FXML
-	private TextArea owwTA;
+	private SwingNode owwTAContainer;
+	private RSyntaxTextArea owwTA;
     @FXML
     private CheckBox extraElementsCB;
-
+    
 
 	
-	@FXML TextArea console;
+	@FXML 
+	private TextArea console;
 
 	private FileChooser fileChooser;
 	
@@ -60,6 +68,20 @@ public class Controller implements Initializable {
 		languageCB.valueProperty().addListener((b, o, n) -> {
 			Manager.INSTANCE.setSelectedLanguage(n);
 		});
+		
+		owcTA = new RSyntaxTextArea(20, 60);
+		owcTA.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
+		owcTA.setCodeFoldingEnabled(true);
+		RTextScrollPane sp = new RTextScrollPane(owcTA);
+		
+		owcTAContainer.setContent(sp);
+		
+		owwTA = new RSyntaxTextArea(20, 60);
+		owwTA.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
+		owwTA.setCodeFoldingEnabled(true);
+		sp = new RTextScrollPane(owwTA);
+		
+		owwTAContainer.setContent(sp);
 	}
 	
 	
@@ -176,6 +198,8 @@ public class Controller implements Initializable {
 			console.setText(Manager.INSTANCE.getReport());
 		} catch(Exception e) {
 			console.setText(e.toString());
+			
+			e.printStackTrace();
 		}
 	}
 	

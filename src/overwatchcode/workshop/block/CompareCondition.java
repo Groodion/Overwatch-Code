@@ -17,6 +17,11 @@ public class CompareCondition extends Condition {
 		b = Terminal.TRUE;
 		op = CompareOperator.EQ;
 	}
+	public CompareCondition(Block block) {
+		this();
+		
+		a = block;
+	}
 	
 	public Block getA() {
 		return a;

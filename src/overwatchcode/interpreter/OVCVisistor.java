@@ -3,6 +3,7 @@ package overwatchcode.interpreter;
 import java.util.ArrayList;
 import java.util.List;
 
+import overwatchcode.parser.ASTActions;
 import overwatchcode.parser.ASTAdditiveExpression;
 import overwatchcode.parser.ASTAdditiveOp;
 import overwatchcode.parser.ASTArguments;
@@ -10,6 +11,7 @@ import overwatchcode.parser.ASTArrayItem;
 import overwatchcode.parser.ASTAssignment;
 import overwatchcode.parser.ASTBoolean;
 import overwatchcode.parser.ASTChain;
+import overwatchcode.parser.ASTCondition;
 import overwatchcode.parser.ASTConditionalAndExpression;
 import overwatchcode.parser.ASTConditionalOrExpression;
 import overwatchcode.parser.ASTElse;
@@ -18,8 +20,8 @@ import overwatchcode.parser.ASTFnArrayItem;
 import overwatchcode.parser.ASTFunctionCall;
 import overwatchcode.parser.ASTFunctionName;
 import overwatchcode.parser.ASTIf;
-import overwatchcode.parser.ASTIfElseRest;
 import overwatchcode.parser.ASTLineStatement;
+import overwatchcode.parser.ASTLoop;
 import overwatchcode.parser.ASTMultiplicativeExpression;
 import overwatchcode.parser.ASTMultiplocativeOp;
 import overwatchcode.parser.ASTNumber;
@@ -40,6 +42,7 @@ import overwatchcode.parser.ASTVarArrayItem;
 import overwatchcode.parser.ASTVarName;
 import overwatchcode.parser.ASTVector;
 import overwatchcode.parser.ASTVectorComponent;
+import overwatchcode.parser.ASTWhile;
 import overwatchcode.parser.OWCParserVisitor;
 import overwatchcode.parser.SimpleNode;
 import overwatchcode.workshop.Block;
@@ -57,6 +60,7 @@ import overwatchcode.workshop.block.Not;
 import overwatchcode.workshop.block.OrCondition;
 import overwatchcode.workshop.block.PlayerScope;
 import overwatchcode.workshop.block.Rule;
+import overwatchcode.workshop.block.RuleCondition;
 import overwatchcode.workshop.block.RuleEvent;
 import overwatchcode.workshop.block.Script;
 import overwatchcode.workshop.block.SetGlobalVar;
@@ -69,8 +73,10 @@ import overwatchcode.workshop.block.Terminal;
 import overwatchcode.workshop.block.ValueAtIndex;
 import overwatchcode.workshop.block.Variable;
 import overwatchcode.workshop.block.Vector;
+import overwatchcode.workshop.block.container.ConditionedContainer;
 import overwatchcode.workshop.block.container.Container;
 import overwatchcode.workshop.block.container.If;
+import overwatchcode.workshop.block.container.While;
 
 public class OVCVisistor implements overwatchcode.parser.OWCParserVisitor {
 
@@ -103,8 +109,9 @@ public class OVCVisistor implements overwatchcode.parser.OWCParserVisitor {
 	}
 
 	/**
-	 * RuleEvent() (LOOKAHEAD("<") RuleScope())? RuleName() RuleCondition() "{"
-	 * 		(LOOKAHEAD(2) Statement() (LOOKAHEAD(";") ";")?)*
+	 * RuleEvent() (RuleScope())? RuleName() RuleCondition() "{"
+	 * 		(Loop())?
+	 * 		(Statement() (";")?)*
 	 * "}"
 	 */
 	@Override
@@ -209,7 +216,7 @@ public class OVCVisistor implements overwatchcode.parser.OWCParserVisitor {
 					if(c instanceof Condition) {
 						rule.getConditions().add(((Condition) c).toRuleCondition());
 					} else {
-						throw new RuntimeException("Expression is not a Condition");
+						rule.getConditions().add(new RuleCondition(c));
 					}
 				}				
 				
@@ -628,33 +635,46 @@ public class OVCVisistor implements overwatchcode.parser.OWCParserVisitor {
 	}
 
 	/**
-	 * "if" "(" Expression() ")" IfElseRest() ( Else() )?
-	 */
-	@Override
-	public Block visit(ASTIf node, Block data) {
-		If ifBlock = new If();
-		
-		Block condition = node.jjtGetChild(0).jjtAccept(this, data);
-		ifBlock.setCondition(condition);
-
-		for(int i = 1; i < node.jjtGetNumChildren(); i++) {
-			node.jjtGetChild(i).jjtAccept(this, ifBlock);
-		}
-		
-		return ifBlock;
-	}
-	/**
 	 *  "{" ( Statement() )* "}"
 	 * | Statement()
 	 */
 	@Override
-	public Block visit(ASTIfElseRest node, Block data) {
+	public Block visit(ASTActions node, Block data) {
 		Container container = (Container) data;
 		
 		node.childrenAccept(this, container);
 		
 		return data;
 	}
+
+	/**
+	 * "(" Expression() ")"
+	 */
+	@Override
+	public Block visit(ASTCondition node, Block data) {
+		ConditionedContainer container = (ConditionedContainer) data;
+				
+		Block condition = node.jjtGetChild(0).jjtAccept(this, data);
+		System.out.println(condition);
+		
+		container.setCondition(condition);
+		
+		return condition;
+	}
+
+	
+	/**
+	 * "if" Condition() Actions() ( Else() )?
+	 */
+	@Override
+	public Block visit(ASTIf node, Block data) {
+		If ifBlock = new If();
+
+		node.childrenAccept(this, ifBlock);
+		
+		return ifBlock;
+	}
+	
 	/**
 	 *  "else" IfElseRest()
 	 */
@@ -665,5 +685,29 @@ public class OVCVisistor implements overwatchcode.parser.OWCParserVisitor {
 		node.childrenAccept(this, ifBlock.getElse());
 		
 		return ifBlock;
+	}
+
+	/**
+	 * While()
+	 */
+	@Override
+	public Block visit(ASTLoop node, Block data) {
+		return node.jjtGetChild(0).jjtAccept(this, data);
+	}
+
+	/**
+	 * "while" Condition() Actions()
+	 */
+	@Override
+	public Block visit(ASTWhile node, Block data) {
+		Rule rule = (Rule) data;
+		
+		While whileBlock = new While();
+		
+		node.childrenAccept(this, whileBlock);
+		
+		rule.getActions().add(whileBlock);
+		
+		return whileBlock;
 	}
 }

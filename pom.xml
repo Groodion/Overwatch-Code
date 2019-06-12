@@ -37,5 +37,11 @@
 	    <version>13-ea+8</version>
 	    <type>pom</type>
 	</dependency>
+	<!-- https://mvnrepository.com/artifact/com.fifesoft/rsyntaxtextarea -->
+	<dependency>
+	    <groupId>com.fifesoft</groupId>
+	    <artifactId>rsyntaxtextarea</artifactId>
+	    <version>3.0.3</version>
+	</dependency>
   </dependencies>
 </project>

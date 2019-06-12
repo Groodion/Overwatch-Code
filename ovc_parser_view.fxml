@@ -1,29 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.embed.swing.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller">
    <center>
-      <HBox BorderPane.alignment="CENTER">
+      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
          <children>
-            <BorderPane>
+            <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
                <center>
-                  <VBox>
+                  <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                      <children>
-                        <TextArea fx:id="owcTA" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Overwatch Code" BorderPane.alignment="CENTER" VBox.vgrow="ALWAYS">
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </VBox.margin>
-                        </TextArea>
+                        <SwingNode fx:id="owcTAContainer" VBox.vgrow="ALWAYS" />
                         <Label alignment="CENTER" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" text="Overwatch code" />
                      </children>
                   </VBox>
                </center>
                <top>
-                  <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <ToolBar maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <items>
                       <Button mnemonicParsing="false" onAction="#openOWCFile" text="Open" />
                         <Button mnemonicParsing="false" onAction="#saveOWCFile" text="Save" />
@@ -31,7 +28,7 @@
                   </ToolBar>
                </top>
             </BorderPane>
-            <BorderPane prefHeight="200.0" prefWidth="200.0">
+            <BorderPane maxHeight="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0">
                <center>
                   <VBox alignment="CENTER" minWidth="100.0" BorderPane.alignment="CENTER">
                      <children>
@@ -52,21 +49,17 @@
                   <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
                </top>
             </BorderPane>
-            <BorderPane>
+            <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
                <center>
-                  <VBox>
+                  <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                      <children>
-                        <TextArea fx:id="owwTA" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Workshop Code" BorderPane.alignment="CENTER" VBox.vgrow="ALWAYS">
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </VBox.margin>
-                        </TextArea>
+                        <SwingNode fx:id="owwTAContainer" VBox.vgrow="ALWAYS" />
                         <Label alignment="CENTER" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" text="Workshop code" />
                      </children>
                   </VBox>
                </center>
                <top>
-                  <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <ToolBar maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <items>
                       <Button mnemonicParsing="false" onAction="#openOWWFile" text="Open" />
                         <Button mnemonicParsing="false" onAction="#saveOWWFile" text="Save" />
@@ -79,9 +72,9 @@
       </HBox>
    </center>
    <bottom>
-      <VBox>
+      <VBox maxWidth="1.7976931348623157E308">
          <children>
-            <GridPane hgap="10.0" vgap="5.0" BorderPane.alignment="CENTER">
+            <GridPane hgap="10.0" maxWidth="1.7976931348623157E308" vgap="5.0" BorderPane.alignment="CENTER">
               <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />

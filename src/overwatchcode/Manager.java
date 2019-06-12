@@ -86,6 +86,8 @@ public class Manager {
 		return functions.get(name);
 	}
 	public String getFunctionName(String name, int size) {
+		if(functions.containsKey(name)) return name;
+		
 		for(WorkshopFunction function: functions.values()) {
 			String n = function.isCaseSensitive() ? name : name.toLowerCase();
 			

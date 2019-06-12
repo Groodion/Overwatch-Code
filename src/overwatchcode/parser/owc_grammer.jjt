@@ -59,6 +59,7 @@ void Rule() :
 {}
 {
   RuleEvent() (LOOKAHEAD("<") RuleScope())? RuleName() RuleCondition() "{"
+  	(LOOKAHEAD(1) Loop())?
   	(LOOKAHEAD(2) Statement())*
   "}"
 }
@@ -246,19 +247,35 @@ void String():
   < STRING_LITERAL>
 }
 
-void If():
-{}
-{
-  "if" "(" Expression() ")" IfElseRest() ( LOOKAHEAD(2) Else() )?
-}
-void IfElseRest():
+void Actions():
 {}
 {
   LOOKAHEAD(2) "{" ( Statement() )* "}"
 | LOOKAHEAD(2) Statement()
 }
+void Condition():
+{}
+{
+  "(" Expression() ")"
+}
+
+void If():
+{}
+{
+  "if" Condition() Actions() ( LOOKAHEAD(2) Else() )?
+}
 void Else():
 {}
 {
-  "else" IfElseRest()
+  "else" Actions()
+}
+void Loop():
+{}
+{
+  While()
+}
+void While():
+{}
+{
+  "while" Condition() Actions()
 }

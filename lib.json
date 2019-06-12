@@ -140,7 +140,7 @@
 			"caseSensitive": false
 		},
 		"None": {
-			"functions": ["Chase Global Variable At Rate", "Chase Global Variable Over Time", "Chase Player Variable At Rate", "Chase Player Variable Over Time"],
+			"functions": ["Chase Global Variable At Rate", "Chase Global Variable Over Time", "Chase Player Variable At Rate", "Chase Player Variable Over Time", "Create Effect"],
 			"text": ["None"],
 			"caseSensitive": false
 		},
@@ -194,6 +194,168 @@
 			"text": ["Stunned"],
 			"caseSensitive": false
 		},
+		"Sphere": {
+			"functions": ["Create Effect"],
+			"text": ["Sphere"],
+			"caseSensitive": false
+		},
+		"Light Shaft": {
+			"functions": ["Create Effect"],
+			"text": ["Light Shaft"],
+			"caseSensitive": false
+		},
+		"Orb": {
+			"functions": ["Create Effect"],
+			"text": ["Orb"],
+			"caseSensitive": false
+		},
+		"Ring": {
+			"functions": ["Create Effect"],
+			"text": ["Ring"],
+			"caseSensitive": false
+		},
+		"Cloud": {
+			"functions": ["Create Effect"],
+			"text": ["Cloud"],
+			"caseSensitive": false
+		},
+		"Sparkles": {
+			"functions": ["Create Effect"],
+			"text": ["Sparkles"],
+			"caseSensitive": false
+		},
+		"Good Aura": {
+			"functions": ["Create Effect"],
+			"text": ["GoodAura"],
+			"caseSensitive": false
+		},
+		"Bad Aura": {
+			"functions": ["Create Effect"],
+			"text": ["BadAura"],
+			"caseSensitive": false
+		},
+		"Energy Sound": {
+			"functions": ["Create Effect"],
+			"text": ["EnergySound"],
+			"caseSensitive": false
+		},
+		"Pickup Sound": {
+			"functions": ["Create Effect"],
+			"text": ["PickupSound"],
+			"caseSensitive": false
+		},
+		"Sparkles Sound": {
+			"functions": ["Create Effect"],
+			"text": ["SparklesSound"],
+			"caseSensitive": false
+		},
+		"Smoke Sound": {
+			"functions": ["Create Effect"],
+			"text": ["SmokeSound"],
+			"caseSensitive": false
+		},
+		"Decal Sound": {
+			"functions": ["Create Effect"],
+			"text": ["DecalSound"],
+			"caseSensitive": false
+		},
+		"Beacon Sound": {
+			"functions": ["Create Effect"],
+			"text": ["BeaconSound"],
+			"caseSensitive": false
+		},
+		"White": {
+			"functions": ["Create Effect"],
+			"text": ["White"],
+			"caseSensitive": false
+		},
+		"Yellow": {
+			"functions": ["Create Effect"],
+			"text": ["Yellow"],
+			"caseSensitive": false
+		},
+		"Red": {
+			"functions": ["Create Effect"],
+			"text": ["Red"],
+			"caseSensitive": false
+		},
+		"Blue": {
+			"functions": ["Create Effect"],
+			"text": ["Blue"],
+			"caseSensitive": false
+		},
+		"Green": {
+			"functions": ["Create Effect"],
+			"text": ["Green"],
+			"caseSensitive": false
+		},
+		"Purple": {
+			"functions": ["Create Effect"],
+			"text": ["Purple"],
+			"caseSensitive": false
+		},
+		"Visible To": {
+			"functions": ["Create Effect"],
+			"text": ["VisibleTo"],
+			"caseSensitive": false
+		},
+		"Position And Radius": {
+			"functions": ["Create Effect"],
+			"text": ["PositionRadius", "PositionAndRadius"],
+			"caseSensitive": false
+		},
+		"Visible To Position and Radius": {
+			"functions": ["Create Effect"],
+			"text": ["VisibleToPositionRadius", "VPR"],
+			"caseSensitive": false
+		},
+		"Empty Array": {
+			"text": ["EmptyArray"],
+			"caseSensitive": false
+		},
+		"Up": {
+			"functions": ["Round To Integer"],
+			"text": ["Up"],
+			"caseSensitive": false
+		},
+		"Down": {
+			"functions": ["Round To Integer"],
+			"text": ["Down"],
+			"caseSensitive": false
+		},
+		"To Nearest": {
+			"functions": ["Round To Integer"],
+			"text": ["ToNearest"],
+			"caseSensitive": false
+		},
+		"Ignore Condition": {
+			"functions": ["Wait"],
+			"text": ["Ignore Condition"],
+			"caseSensitive": false
+		},
+		"Abort When False": {
+			"functions": ["Wait"],
+			"text": ["Abort", "AbortWhenFalse"],
+			"caseSensitive": false
+		},
+		"Restart When True": {
+			"functions": ["Wait"],
+			"text": ["RestartWhenTrue", "Restart"],
+			"caseSensitive": false
+		},
+		"Is Game in Progress": {
+			"text": ["GameInProgress", "IsGameInProgress"],
+			"caseSensitive": false
+		},
+		"Is Waiting For Players": {
+			"text": ["WaitingForPlayers", "IsWaitingForPlayers"],
+			"caseSensitive": false
+		},
+		"Current Element": {
+			"functions": ["Filtered Array"],
+			"text": ["CurrentElement"],
+			"caseSensitive": false
+		}
 
 	},
 	"functions": {
@@ -230,12 +392,34 @@
 			"caseSensitive": false,
 			"text": ["allowButton"]
 		},
+		
+		"Append To Array": {
+			"arguments": ["Array", "Element"],
+			"action": true,
+			"caseSensitive": false,
+			"text": ["appendToArray"]
+		},
+		
 		"Apply Impulse": {
 			"arguments": ["Player", "Direction", "Speed", "Relative", "Motion"],
 			"action": true,
 			"caseSensitive": false,
 			"text": ["applyImpulse"]
 		},
+		
+		"Array Contains": {
+			"arguments": ["Array", "Element"],
+			"action": false,
+			"caseSensitive": false,
+			"text": ["appendContains"]
+		},
+		"Array Slice": {
+			"arguments": ["Array", "Start Index", "Length"],
+			"action": false,
+			"caseSensitive": false,
+			"text": ["appendSlice"]
+		},
+		
 		"Big Message": {
 			"arguments": ["VisibleTo", "Header"],
 			"action": true,
@@ -284,6 +468,67 @@
 			"caseSensitive": false,
 			"text": ["clearStatus"]
 		},
+		"Count Of": {
+			"arguments": ["Array"],
+			"action": false,
+			"caseSensitive": false,
+			"text": ["countOf"]
+		},
+		
+		"Create Effect": {
+			"arguments": ["Visible To", "Type", "Color", "Position", "Radius", "Reevalulation"],
+			"action": true,
+			"caseSensitive": false,
+			"text": ["createEffect"]
+		},
+		
+		"Destroy Effect": {
+			"arguments": [""],
+			"action": true,
+			"caseSensitive": false,
+			"text": ["destroyEffect"]
+		},
+		
+		"Distance Between": {
+			"arguments": ["Start Pos", "End Pos"],
+			"action": false,
+			"caseSensitive": false,
+			"text": ["distanceBetween"]
+		},
+		
+		"Filtered Array": {
+			"arguments": ["Array", ""],
+			"action": false,
+			"caseSensitive": false,
+			"text": ["filteredArray", "filter"]
+		},
+		"First Of": {
+			"arguments": ["Array"],
+			"action": false,
+			"caseSensitive": false,
+			"text": ["firstOf"]
+		},
+		
+		"Not": {
+			"arguments": [""],
+			"action": false,
+			"caseSensitive": false,
+			"text": ["not"]
+		},
+		
+		"Round To Integer": {
+			"arguments": ["Value", "Rounding Type"],
+			"action": true,
+			"caseSensitive": false,
+			"text": ["roundToInteger", "round"]
+		},
+		
+		"Position Of": {
+			"arguments": ["Player"],
+			"action": false,
+			"caseSensitive": false,
+			"text": ["positionOf"]
+		},
 		
 		"Skip": {
 			"arguments": ["Number of Actions"],
@@ -291,11 +536,25 @@
 			"caseSensitive": false,
 			"text": ["skip"]
 		},
-		"SkipIf": {
+		"Skip If": {
 			"arguments": ["Condition", "Number of Actions"],
 			"action": true,
 			"caseSensitive": false,
 			"text": ["skipIf"]
+		},
+		
+		"Teleport": {
+			"arguments": ["Player", "Position"],
+			"action": true,
+			"caseSensitive": false,
+			"text": ["teleport"]
+		},
+		
+		"Wait": {
+			"arguments": ["Time", "Wait Behavior"],
+			"action": true,
+			"caseSensitive": false,
+			"text": ["wait"]
 		}
 
 	},

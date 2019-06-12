@@ -8,16 +8,15 @@ import overwatchcode.workshop.block.Function;
 import overwatchcode.workshop.block.Not;
 import overwatchcode.workshop.block.Terminal;
 
-public class If extends Container {
+public class If extends ConditionedContainer {
 	
-	private class Else extends Container {
+	private class Else extends ConditionedContainer {
 		@Override
 		protected List<Block> buildBlocks() {
 			return null;
 		}
 	};
 	
-	private Block condition;
 	private Else elseBlock;	
 	
 	
@@ -25,12 +24,6 @@ public class If extends Container {
 		elseBlock = new Else();
 	}
 	
-	public Block getCondition() {
-		return condition;
-	}
-	public void setCondition(Block condition) {
-		this.condition = condition;
-	}
 	public Else getElse() {
 		return elseBlock;
 	}
@@ -50,11 +43,11 @@ public class If extends Container {
 		int elseSize = elseBlock.getActions().size();
 		
 		if(elseSize == 0) {
-			Function ifCondition = new Function("Skip If", new Not(condition), new Terminal(String.valueOf(ifSize)));
+			Function ifCondition = new Function("Skip If", new Not(getCondition()), new Terminal(String.valueOf(ifSize)));
 			blocks.add(ifCondition);
 			blocks.addAll(getActions());			
 		} else {
-			Function ifCondition = new Function("Skip If", condition, new Terminal("1"));
+			Function ifCondition = new Function("Skip If", getCondition(), new Terminal("1"));
 			Function skipToElse = new Function("Skip", new Terminal(String.valueOf(ifSize + 1)));
 			Function skipElse = new Function("Skip", new Terminal(String.valueOf(elseSize)));
 			

@@ -37,9 +37,12 @@ public interface OWCParserTreeConstants
   public int JJTNUMBER = 31;
   public int JJTBOOLEAN = 32;
   public int JJTSTRING = 33;
-  public int JJTIF = 34;
-  public int JJTIFELSEREST = 35;
-  public int JJTELSE = 36;
+  public int JJTACTIONS = 34;
+  public int JJTCONDITION = 35;
+  public int JJTIF = 36;
+  public int JJTELSE = 37;
+  public int JJTLOOP = 38;
+  public int JJTWHILE = 39;
 
 
   public String[] jjtNodeName = {
@@ -77,9 +80,12 @@ public interface OWCParserTreeConstants
     "Number",
     "Boolean",
     "String",
+    "Actions",
+    "Condition",
     "If",
-    "IfElseRest",
     "Else",
+    "Loop",
+    "While",
   };
 }
-/* JavaCC - OriginalChecksum=e48eaceda6f1395d6ce97ed6d0be3dfd (do not edit this line) */
+/* JavaCC - OriginalChecksum=2cdad8222f007700149cb6bac95b3a54 (do not edit this line) */

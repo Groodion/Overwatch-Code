@@ -30,7 +30,6 @@ public class SetGlobalVarAtIndex extends SetGlobalVar {
 		sB.append("Set Global Variable At Index");		
 		sB.append('(');
 		sB.append(getVar().toOVWCode(min));
-		if(!min) sB.append(' ');
 		sB.append(',');
 		if(!min) sB.append(' ');
 		sB.append(index.toOVWCode(min));
