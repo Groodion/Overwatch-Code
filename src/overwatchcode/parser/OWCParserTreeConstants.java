@@ -43,6 +43,12 @@ public interface OWCParserTreeConstants
   public int JJTELSE = 37;
   public int JJTLOOP = 38;
   public int JJTWHILE = 39;
+  public int JJTFOR = 40;
+  public int JJTFORINITBLOCKS = 41;
+  public int JJTFORCONDITION = 42;
+  public int JJTFORINCBLOCKS = 43;
+  public int JJTBREAK = 44;
+  public int JJTCONTINUE = 45;
 
 
   public String[] jjtNodeName = {
@@ -86,6 +92,12 @@ public interface OWCParserTreeConstants
     "Else",
     "Loop",
     "While",
+    "For",
+    "ForInitBlocks",
+    "ForCondition",
+    "ForIncBlocks",
+    "Break",
+    "Continue",
   };
 }
-/* JavaCC - OriginalChecksum=2cdad8222f007700149cb6bac95b3a54 (do not edit this line) */
+/* JavaCC - OriginalChecksum=058b035aae2758da3c469ac130960405 (do not edit this line) */

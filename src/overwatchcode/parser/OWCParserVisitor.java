@@ -44,5 +44,11 @@ public interface OWCParserVisitor
   public overwatchcode.workshop.Block visit(ASTElse node, overwatchcode.workshop.Block data);
   public overwatchcode.workshop.Block visit(ASTLoop node, overwatchcode.workshop.Block data);
   public overwatchcode.workshop.Block visit(ASTWhile node, overwatchcode.workshop.Block data);
+  public overwatchcode.workshop.Block visit(ASTFor node, overwatchcode.workshop.Block data);
+  public overwatchcode.workshop.Block visit(ASTForInitBlocks node, overwatchcode.workshop.Block data);
+  public overwatchcode.workshop.Block visit(ASTForCondition node, overwatchcode.workshop.Block data);
+  public overwatchcode.workshop.Block visit(ASTForIncBlocks node, overwatchcode.workshop.Block data);
+  public overwatchcode.workshop.Block visit(ASTBreak node, overwatchcode.workshop.Block data);
+  public overwatchcode.workshop.Block visit(ASTContinue node, overwatchcode.workshop.Block data);
 }
-/* JavaCC - OriginalChecksum=30eb5041be3066599703939e55e950fe (do not edit this line) */
+/* JavaCC - OriginalChecksum=43152a815af74173b0cc1749cb2584dc (do not edit this line) */

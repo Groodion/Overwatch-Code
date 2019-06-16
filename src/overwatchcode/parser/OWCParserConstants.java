@@ -33,21 +33,31 @@ public interface OWCParserConstants {
   /** RegularExpression Id. */
   int FOREACH = 14;
   /** RegularExpression Id. */
-  int IDENTIFIER = 15;
+  int BREAK = 15;
   /** RegularExpression Id. */
-  int GT = 16;
+  int CONTINUE = 16;
   /** RegularExpression Id. */
-  int GTEQ = 17;
+  int IDENTIFIER = 17;
   /** RegularExpression Id. */
-  int ST = 18;
+  int GT = 18;
   /** RegularExpression Id. */
-  int STEQ = 19;
+  int GTEQ = 19;
   /** RegularExpression Id. */
-  int EQ = 20;
+  int ST = 20;
   /** RegularExpression Id. */
-  int NEQ = 21;
+  int STEQ = 21;
   /** RegularExpression Id. */
-  int NOT_OP = 22;
+  int EQ = 22;
+  /** RegularExpression Id. */
+  int NEQ = 23;
+  /** RegularExpression Id. */
+  int NOT_OP = 24;
+  /** RegularExpression Id. */
+  int ASSIGN = 25;
+  /** RegularExpression Id. */
+  int FOREACH_ASSIGN = 26;
+  /** RegularExpression Id. */
+  int VECTOR_COMP = 27;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -69,6 +79,8 @@ public interface OWCParserConstants {
     "\"for\"",
     "\"while\"",
     "\"foreach\"",
+    "\"break\"",
+    "\"continue\"",
     "<IDENTIFIER>",
     "\">\"",
     "\">=\"",
@@ -77,6 +89,9 @@ public interface OWCParserConstants {
     "\"==\"",
     "\"!=\"",
     "\"!\"",
+    "\"=\"",
+    "\"=>\"",
+    "<VECTOR_COMP>",
     "\"{\"",
     "\"}\"",
     "\",\"",
@@ -87,7 +102,6 @@ public interface OWCParserConstants {
     "\"[\"",
     "\"]\"",
     "\".\"",
-    "\"=\"",
     "\"||\"",
     "\"&&\"",
     "\"+\"",
@@ -96,9 +110,6 @@ public interface OWCParserConstants {
     "\"/\"",
     "\"%\"",
     "\"^\"",
-    "\"->X\"",
-    "\"->Y\"",
-    "\"->Z\"",
   };
 
 }

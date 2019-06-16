@@ -5,6 +5,7 @@ import java.util.List;
 
 import overwatchcode.workshop.Block;
 import overwatchcode.workshop.WorkshopFunction;
+import overwatchcode.workshop.block.Rule;
 import overwatchcode.workshop.block.RuleEvent;
 
 public abstract class Container extends Block {
@@ -20,12 +21,13 @@ public abstract class Container extends Block {
 		return actions;
 	}
 
-	public List<Block> resolveContainers() {
+	public List<Block> resolveContainers(Rule rule) {
 		List<Block> blocks = new ArrayList<>();
 		
+		// remove container blocks
 		for(Block block: actions) {
 			if(block instanceof Container) {
-				blocks.addAll(((Container) block).resolveContainers());
+				blocks.addAll(((Container) block).resolveContainers(rule));
 			} else {
 				blocks.add(block);
 			}
@@ -37,7 +39,7 @@ public abstract class Container extends Block {
 		return buildBlocks();
 	}
 	protected abstract List<Block> buildBlocks();
-
+	
 	@Override
 	public void updateNames(RuleEvent event, String ruleName, List<WorkshopFunction> functions) {
 		throw new RuntimeException();

@@ -6,6 +6,7 @@ import java.util.List;
 import overwatchcode.workshop.Block;
 import overwatchcode.workshop.block.Function;
 import overwatchcode.workshop.block.Not;
+import overwatchcode.workshop.block.Rule;
 import overwatchcode.workshop.block.Terminal;
 
 public class If extends ConditionedContainer {
@@ -30,10 +31,10 @@ public class If extends ConditionedContainer {
 
 
 	@Override
-	public List<Block> resolveContainers() {
-		elseBlock.resolveContainers();
+	public List<Block> resolveContainers(Rule rule) {
+		elseBlock.resolveContainers(rule);
 		
-		return super.resolveContainers();
+		return super.resolveContainers(rule);
 	}
 	@Override
 	public List<Block> buildBlocks() {

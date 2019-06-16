@@ -39,6 +39,8 @@ TOKEN: /* KEYWORDS */
 | < FOR: "for">
 | < WHILE: "while">
 | < FOREACH: "foreach">
+| < BREAK: "break">
+| < CONTINUE: "continue">
 }
 TOKEN : /* IDENTIFIERS */{  < IDENTIFIER : [ "_", "a"-"z", "A"-"Z" ] ([ "0"-"9", "_", "a"-"z", "A"-"Z" ])* >}
 TOKEN : /* OPERATORS */
@@ -50,6 +52,9 @@ TOKEN : /* OPERATORS */
 | < EQ: "==">
 | < NEQ: "!=">
 | < NOT_OP: "!">
+| < ASSIGN: "=">
+| < FOREACH_ASSIGN: "=>">
+| < VECTOR_COMP: "->X" | "->Y" | "->Z">
 }
 
 SimpleNode Start() :{/*@bgen(jjtree) Start */
@@ -303,7 +308,9 @@ void LineStatement():
   try {
 /*@egen*/
   LOOKAHEAD(2) FunctionCall() (LOOKAHEAD(1) ";")?
-| LOOKAHEAD(2) "$" Assignment() (LOOKAHEAD(1) ";")?/*@bgen(jjtree)*/
+| LOOKAHEAD(2) "$" Assignment() (LOOKAHEAD(1) ";")?
+| LOOKAHEAD(2) Break() (LOOKAHEAD(1) ";")?
+| LOOKAHEAD(2) Continue() (LOOKAHEAD(1) ";")?/*@bgen(jjtree)*/
   } catch (Throwable jjte000) {
     if (jjtc000) {
       jjtree.clearNodeScope(jjtn000);
@@ -986,7 +993,7 @@ void VectorComponent():
 {/*@bgen(jjtree) VectorComponent */
   try {
 /*@egen*/
-  "[" Expression() "]" ( "->X" |"->Y" | "->Z" )/*@bgen(jjtree)*/
+  "[" Expression() "]" < VECTOR_COMP >/*@bgen(jjtree)*/
   } catch (Throwable jjte000) {
     if (jjtc000) {
       jjtree.clearNodeScope(jjtn000);
@@ -1263,7 +1270,8 @@ void Loop():
 {/*@bgen(jjtree) Loop */
   try {
 /*@egen*/
-  While()/*@bgen(jjtree)*/
+  While()
+| For()/*@bgen(jjtree)*/
   } catch (Throwable jjte000) {
     if (jjtc000) {
       jjtree.clearNodeScope(jjtn000);
@@ -1313,6 +1321,188 @@ void While():
       throw (ParseException)jjte000;
     }
     throw (Error)jjte000;
+  } finally {
+    if (jjtc000) {
+      jjtree.closeNodeScope(jjtn000, true);
+      jjtreeCloseNodeScope(jjtn000);
+      jjtn000.jjtSetLastToken(getToken(0));
+    }
+  }
+/*@egen*/
+}
+void For():
+{/*@bgen(jjtree) For */
+  ASTFor jjtn000 = new ASTFor(this, JJTFOR);
+  boolean jjtc000 = true;
+  jjtree.openNodeScope(jjtn000);
+  jjtreeOpenNodeScope(jjtn000);
+  jjtn000.jjtSetFirstToken(getToken(1));
+/*@egen*/}
+{/*@bgen(jjtree) For */
+  try {
+/*@egen*/
+  "for" "(" (LOOKAHEAD(1) ForInitBlocks())? ";" (LOOKAHEAD(1) ForCondition())? ";" (LOOKAHEAD(1) ForIncBlocks())? ")" Actions()/*@bgen(jjtree)*/
+  } catch (Throwable jjte000) {
+    if (jjtc000) {
+      jjtree.clearNodeScope(jjtn000);
+      jjtc000 = false;
+    } else {
+      jjtree.popNode();
+    }
+    if (jjte000 instanceof RuntimeException) {
+      throw (RuntimeException)jjte000;
+    }
+    if (jjte000 instanceof ParseException) {
+      throw (ParseException)jjte000;
+    }
+    throw (Error)jjte000;
+  } finally {
+    if (jjtc000) {
+      jjtree.closeNodeScope(jjtn000, true);
+      jjtreeCloseNodeScope(jjtn000);
+      jjtn000.jjtSetLastToken(getToken(0));
+    }
+  }
+/*@egen*/
+}
+void ForInitBlocks(): 
+{/*@bgen(jjtree) ForInitBlocks */
+  ASTForInitBlocks jjtn000 = new ASTForInitBlocks(this, JJTFORINITBLOCKS);
+  boolean jjtc000 = true;
+  jjtree.openNodeScope(jjtn000);
+  jjtreeOpenNodeScope(jjtn000);
+  jjtn000.jjtSetFirstToken(getToken(1));
+/*@egen*/}
+{/*@bgen(jjtree) ForInitBlocks */
+  try {
+/*@egen*/
+  Assignment() (LOOKAHEAD(1) "," ForInitBlocks())?/*@bgen(jjtree)*/
+  } catch (Throwable jjte000) {
+    if (jjtc000) {
+      jjtree.clearNodeScope(jjtn000);
+      jjtc000 = false;
+    } else {
+      jjtree.popNode();
+    }
+    if (jjte000 instanceof RuntimeException) {
+      throw (RuntimeException)jjte000;
+    }
+    if (jjte000 instanceof ParseException) {
+      throw (ParseException)jjte000;
+    }
+    throw (Error)jjte000;
+  } finally {
+    if (jjtc000) {
+      jjtree.closeNodeScope(jjtn000, true);
+      jjtreeCloseNodeScope(jjtn000);
+      jjtn000.jjtSetLastToken(getToken(0));
+    }
+  }
+/*@egen*/
+}
+void ForCondition():
+{/*@bgen(jjtree) ForCondition */
+  ASTForCondition jjtn000 = new ASTForCondition(this, JJTFORCONDITION);
+  boolean jjtc000 = true;
+  jjtree.openNodeScope(jjtn000);
+  jjtreeOpenNodeScope(jjtn000);
+  jjtn000.jjtSetFirstToken(getToken(1));
+/*@egen*/}
+{/*@bgen(jjtree) ForCondition */
+  try {
+/*@egen*/
+  Expression()/*@bgen(jjtree)*/
+  } catch (Throwable jjte000) {
+    if (jjtc000) {
+      jjtree.clearNodeScope(jjtn000);
+      jjtc000 = false;
+    } else {
+      jjtree.popNode();
+    }
+    if (jjte000 instanceof RuntimeException) {
+      throw (RuntimeException)jjte000;
+    }
+    if (jjte000 instanceof ParseException) {
+      throw (ParseException)jjte000;
+    }
+    throw (Error)jjte000;
+  } finally {
+    if (jjtc000) {
+      jjtree.closeNodeScope(jjtn000, true);
+      jjtreeCloseNodeScope(jjtn000);
+      jjtn000.jjtSetLastToken(getToken(0));
+    }
+  }
+/*@egen*/
+}
+void ForIncBlocks():
+{/*@bgen(jjtree) ForIncBlocks */
+  ASTForIncBlocks jjtn000 = new ASTForIncBlocks(this, JJTFORINCBLOCKS);
+  boolean jjtc000 = true;
+  jjtree.openNodeScope(jjtn000);
+  jjtreeOpenNodeScope(jjtn000);
+  jjtn000.jjtSetFirstToken(getToken(1));
+/*@egen*/}
+{/*@bgen(jjtree) ForIncBlocks */
+  try {
+/*@egen*/
+  Assignment() (LOOKAHEAD(1) "," ForIncBlocks())?/*@bgen(jjtree)*/
+  } catch (Throwable jjte000) {
+    if (jjtc000) {
+      jjtree.clearNodeScope(jjtn000);
+      jjtc000 = false;
+    } else {
+      jjtree.popNode();
+    }
+    if (jjte000 instanceof RuntimeException) {
+      throw (RuntimeException)jjte000;
+    }
+    if (jjte000 instanceof ParseException) {
+      throw (ParseException)jjte000;
+    }
+    throw (Error)jjte000;
+  } finally {
+    if (jjtc000) {
+      jjtree.closeNodeScope(jjtn000, true);
+      jjtreeCloseNodeScope(jjtn000);
+      jjtn000.jjtSetLastToken(getToken(0));
+    }
+  }
+/*@egen*/
+}
+void Break():
+{/*@bgen(jjtree) Break */
+  ASTBreak jjtn000 = new ASTBreak(this, JJTBREAK);
+  boolean jjtc000 = true;
+  jjtree.openNodeScope(jjtn000);
+  jjtreeOpenNodeScope(jjtn000);
+  jjtn000.jjtSetFirstToken(getToken(1));
+/*@egen*/}
+{/*@bgen(jjtree) Break */
+  try {
+/*@egen*/
+  < BREAK >/*@bgen(jjtree)*/
+  } finally {
+    if (jjtc000) {
+      jjtree.closeNodeScope(jjtn000, true);
+      jjtreeCloseNodeScope(jjtn000);
+      jjtn000.jjtSetLastToken(getToken(0));
+    }
+  }
+/*@egen*/
+}
+void Continue():
+{/*@bgen(jjtree) Continue */
+  ASTContinue jjtn000 = new ASTContinue(this, JJTCONTINUE);
+  boolean jjtc000 = true;
+  jjtree.openNodeScope(jjtn000);
+  jjtreeOpenNodeScope(jjtn000);
+  jjtn000.jjtSetFirstToken(getToken(1));
+/*@egen*/}
+{/*@bgen(jjtree) Continue */
+  try {
+/*@egen*/
+  < CONTINUE >/*@bgen(jjtree)*/
   } finally {
     if (jjtc000) {
       jjtree.closeNodeScope(jjtn000, true);

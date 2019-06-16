@@ -17,9 +17,13 @@ public class Rule extends Container {
 	private String name;
 	private List<RuleCondition> conditions;
 	
+	private List<Rule> preRules;
+	
 	
 	public Rule() {
 		conditions = new ArrayList<>();
+		
+		preRules = new ArrayList<>();
 		
 		teamScope = TeamScope.All;
 		playerScope = PlayerScope.ALL;
@@ -54,6 +58,13 @@ public class Rule extends Container {
 		return conditions;
 	}
 	
+	public List<Rule> getPreRules() {
+		return preRules;
+	}
+	
+	public void resolveContainers() {
+		resolveContainers(this);
+	}
 	@Override
 	protected List<Block> buildBlocks() {
 		return getActions();
@@ -75,6 +86,11 @@ public class Rule extends Container {
 	public String toOVWCode(boolean min) {
 		KeywordContainer kwc = Manager.INSTANCE.getKeywordContainer();
 		StringBuilder sB = new StringBuilder();
+		
+		for(Rule preRule: preRules) {
+			sB.append(preRule.toOVWCode(min));
+			if(!min) sB.append('\n');			
+		}
 		
 		sB.append(kwc.getRule());
 		sB.append("(\"");
@@ -125,5 +141,17 @@ public class Rule extends Container {
 		sB.append('}');
 		
 		return sB.toString();
+	}
+
+	public Rule cloneConditions(String nameExtension) {
+		Rule clone = new Rule();
+		
+		clone.setName(getName() + nameExtension);
+		clone.setEvent(getEvent());
+		clone.setPlayerScope(getPlayerScope());
+		clone.setTeamScope(getTeamScope());
+		clone.getConditions().addAll(getConditions());
+		
+		return clone;
 	}
 }

@@ -10,13 +10,19 @@ import overwatchcode.parser.ASTArguments;
 import overwatchcode.parser.ASTArrayItem;
 import overwatchcode.parser.ASTAssignment;
 import overwatchcode.parser.ASTBoolean;
+import overwatchcode.parser.ASTBreak;
 import overwatchcode.parser.ASTChain;
 import overwatchcode.parser.ASTCondition;
 import overwatchcode.parser.ASTConditionalAndExpression;
 import overwatchcode.parser.ASTConditionalOrExpression;
+import overwatchcode.parser.ASTContinue;
 import overwatchcode.parser.ASTElse;
 import overwatchcode.parser.ASTExpression;
 import overwatchcode.parser.ASTFnArrayItem;
+import overwatchcode.parser.ASTFor;
+import overwatchcode.parser.ASTForCondition;
+import overwatchcode.parser.ASTForIncBlocks;
+import overwatchcode.parser.ASTForInitBlocks;
 import overwatchcode.parser.ASTFunctionCall;
 import overwatchcode.parser.ASTFunctionName;
 import overwatchcode.parser.ASTIf;
@@ -73,8 +79,11 @@ import overwatchcode.workshop.block.Terminal;
 import overwatchcode.workshop.block.ValueAtIndex;
 import overwatchcode.workshop.block.Variable;
 import overwatchcode.workshop.block.Vector;
+import overwatchcode.workshop.block.container.Break;
 import overwatchcode.workshop.block.container.ConditionedContainer;
 import overwatchcode.workshop.block.container.Container;
+import overwatchcode.workshop.block.container.Continue;
+import overwatchcode.workshop.block.container.For;
 import overwatchcode.workshop.block.container.If;
 import overwatchcode.workshop.block.container.While;
 
@@ -655,7 +664,6 @@ public class OVCVisistor implements overwatchcode.parser.OWCParserVisitor {
 		ConditionedContainer container = (ConditionedContainer) data;
 				
 		Block condition = node.jjtGetChild(0).jjtAccept(this, data);
-		System.out.println(condition);
 		
 		container.setCondition(condition);
 		
@@ -709,5 +717,84 @@ public class OVCVisistor implements overwatchcode.parser.OWCParserVisitor {
 		rule.getActions().add(whileBlock);
 		
 		return whileBlock;
+	}
+
+	/**
+	 * "for" "(" (ForInitBlocks())? ";" (ForCondition())? ";" (ForIncBlocks())? ")" Actions()
+	 */
+	@Override
+	public Block visit(ASTFor node, Block data) {
+		Rule rule = (Rule) data;
+		
+		For forBlock = new For();
+
+		node.childrenAccept(this, forBlock);
+		
+		rule.getActions().add(forBlock);
+		
+		return forBlock;
+	}
+	/**
+	 * Assignment() ("," ForInitBlocks())?
+	 */
+	@Override
+	public Block visit(ASTForInitBlocks node, Block data) {
+		For forBlock = (For) data;
+		
+		Block setBlock = node.jjtGetChild(0).jjtAccept(this, forBlock);
+		
+		forBlock.getInitBlocks().add(setBlock);
+		
+		if(node.jjtGetNumChildren() == 2) {
+			node.jjtGetChild(1).jjtAccept(this, forBlock);
+		}
+		
+		return forBlock;
+	}
+	/**
+	 * Expression()
+	 */
+	@Override
+	public Block visit(ASTForCondition node, Block data) {
+		For forBlock = (For) data;
+		
+		Block condition = node.jjtGetChild(0).jjtAccept(this, data);
+		
+		forBlock.setCondition(condition);
+		
+		return condition;
+	}
+	/**
+	 * Assignment() ("," ForIncBlocks())?
+	 */
+	@Override
+	public Block visit(ASTForIncBlocks node, Block data) {
+		For forBlock = (For) data;
+		
+		Block setBlock = node.jjtGetChild(0).jjtAccept(this, forBlock);
+		
+		forBlock.getIncBlocks().add(setBlock);
+		
+		if(node.jjtGetNumChildren() == 2) {
+			node.jjtGetChild(1).jjtAccept(this, forBlock);
+		}
+		
+		return forBlock;
+	}
+
+	/**
+	 * < BREAK >
+	 */
+	@Override
+	public Block visit(ASTBreak node, Block data) {
+		return new Break();
+	}
+
+	/**
+	 * < CONTINUE >
+	 */
+	@Override
+	public Block visit(ASTContinue node, Block data) {
+		return new Continue();
 	}
 }

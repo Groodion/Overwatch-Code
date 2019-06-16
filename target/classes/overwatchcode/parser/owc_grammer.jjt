@@ -35,6 +35,8 @@ TOKEN: /* KEYWORDS */
 | < FOR: "for">
 | < WHILE: "while">
 | < FOREACH: "foreach">
+| < BREAK: "break">
+| < CONTINUE: "continue">
 }
 TOKEN : /* IDENTIFIERS */{  < IDENTIFIER : [ "_", "a"-"z", "A"-"Z" ] ([ "0"-"9", "_", "a"-"z", "A"-"Z" ])* >}
 TOKEN : /* OPERATORS */
@@ -46,6 +48,9 @@ TOKEN : /* OPERATORS */
 | < EQ: "==">
 | < NEQ: "!=">
 | < NOT_OP: "!">
+| < ASSIGN: "=">
+| < FOREACH_ASSIGN: "=>">
+| < VECTOR_COMP: "->X" | "->Y" | "->Z">
 }
 
 SimpleNode Start() :{}{  ( Rule() )*
@@ -101,6 +106,8 @@ void LineStatement():
 {
   LOOKAHEAD(2) FunctionCall() (LOOKAHEAD(1) ";")?
 | LOOKAHEAD(2) "$" Assignment() (LOOKAHEAD(1) ";")?
+| LOOKAHEAD(2) Break() (LOOKAHEAD(1) ";")?
+| LOOKAHEAD(2) Continue() (LOOKAHEAD(1) ";")?
 }
 void Statement():
 {}
@@ -223,7 +230,7 @@ void UnaryExpression() :
 void VectorComponent():
 {}
 {
-  "[" Expression() "]" ( "->X" |"->Y" | "->Z" )
+  "[" Expression() "]" < VECTOR_COMP >
 }
 
 void Vector():
@@ -273,9 +280,40 @@ void Loop():
 {}
 {
   While()
+| For()
 }
 void While():
 {}
 {
   "while" Condition() Actions()
+}
+void For():
+{}
+{
+  "for" "(" (LOOKAHEAD(1) ForInitBlocks())? ";" (LOOKAHEAD(1) ForCondition())? ";" (LOOKAHEAD(1) ForIncBlocks())? ")" Actions()
+}
+void ForInitBlocks(): 
+{}
+{
+  Assignment() (LOOKAHEAD(1) "," ForInitBlocks())?
+}
+void ForCondition():
+{}
+{
+  Expression()
+}
+void ForIncBlocks():
+{}
+{
+  Assignment() (LOOKAHEAD(1) "," ForIncBlocks())?
+}
+void Break():
+{}
+{
+  < BREAK >
+}
+void Continue():
+{}
+{
+  < CONTINUE >
 }
